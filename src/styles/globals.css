@@ -1,14 +1,4 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 html,
 body {
@@ -17,17 +7,16 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa !important;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 a {
@@ -35,8 +24,87 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+section {
+  min-height: 100% !important;
 }
+
+/* Scrollbar CSS */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fafafa;
+  margin: 10px 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e74c3c;
+}
+
+/* Scrollbar Buttons (Up & Down Arrows) */
+::-webkit-scrollbar-button {
+  background-color: transparent;
+  height: 20px; /* Match scrollbar width */
+  width: 10px;
+  border-right: 3px solid #e74c3c;
+  outline: 3px solid #e74c3c;
+}
+
+/* Scrollbar Button on Hover */
+::-webkit-scrollbar-button:hover {
+  background-color: transparent;
+}
+
+/* Scrollbar Button for Scrolling Up */
+::-webkit-scrollbar-button:single-button:decrement {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'%3E%3Cpath d='M12 8l6 6H6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  border-top: 3px solid #e74c3c;
+}
+
+/* Scrollbar Button for Scrolling Down */
+::-webkit-scrollbar-button:single-button:increment {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'%3E%3Cpath d='M12 16l-6-6h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  border-bottom: 3px solid #e74c3c;
+}
+
+/* Hiding Spinner from Input:Number */
+/* Chrome, Safari, Edge, Opera */
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.recaptcha-container {
+  transform: scale(0.8);
+  transform-origin: center;
+  width: 100%;
+}
+
+.recaptcha-container > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+} */
