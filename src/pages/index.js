@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
@@ -18,10 +19,26 @@ export default function Home() {
       />
 
       {/* Header */}
-      <Header />
+      <div style={{ height: "13vh" }}>
+        <Header />
+      </div>
 
       {/* Hero Section */}
-      <HeroSection />
+      <div
+        style={{
+          height: "87vh",
+          overflow: "hidden",
+        }}
+      >
+        <HeroSection />
+      </div>
+
+      <div style={{ height: "100vh" }}></div>
+
+      {/* Footer */}
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }

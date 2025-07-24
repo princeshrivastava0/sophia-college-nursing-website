@@ -4,92 +4,83 @@ function HeroSection() {
   const router = useRouter();
   const { basePath } = router;
 
+  const heroCarouselItems = [
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/1.jpeg`,
+      alt: "Yoga",
+      caption: "International Yoga Day - 2025",
+      sub_Caption: "Slide 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/2.jpeg`,
+      alt: "Yoga",
+      caption: "International Yoga Day - 2025",
+      sub_Caption: "Slide 2",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/3.jpeg`,
+      alt: "Yoga",
+      caption: "International Yoga Day - 2025",
+      sub_Caption: "Slide 3",
+    },
+  ];
+
   return (
     <section
       id="hero-section"
-      className="d-flex justify-content-center align-items-center pt-5"
-      style={{ border: "5px solid blue", height: "100vh" }}
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: "100%" }}
     >
       <div
-        id="carouselExampleCaptions"
-        className="carousel slide carousel-fade w-100 pt-5"
+        id="heroCarousel"
+        className="carousel slide carousel-fade w-100"
         data-bs-ride="carousel"
         data-bs-interval="2000"
         data-bs-pause="hover"
       >
         <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
+          {heroCarouselItems.map((item, index) => {
+            return (
+              <button
+                key={`indicator-btn-${index}`}
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide-to={index}
+                className={index === 0 ? "active" : ""}
+                aria-current={index === 0 ? "true" : "false"}
+                aria-label={`Slide ${index}`}
+              ></button>
+            );
+          })}
         </div>
-        <div className="carousel-inner" style={{ height: "80vh" }}>
-          <div
-            className="carousel-item active position-relative w-100"
-            style={{ height: "100%" }}
-          >
-            <Image
-              src={`${basePath}/event-images/international-yoga-day-2025/1.jpeg`}
-              alt="Yoga"
-              fill
-              style={{ objectFit: "cover" }} // Ensures the image covers the area
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>International Yoga Day - 2025</h5>
-              <p>Slide 1</p>
-            </div>
-          </div>
-          <div
-            className="carousel-item position-relative w-100"
-            style={{ height: "100%" }}
-          >
-            <Image
-              src={`${basePath}/event-images/international-yoga-day-2025/2.jpeg`}
-              alt="Yoga"
-              fill
-              style={{ objectFit: "cover" }} // Ensures the image covers the area
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>International Yoga Day - 2025</h5>
-              <p>Slide 2</p>
-            </div>
-          </div>
-          <div
-            className="carousel-item position-relative w-100"
-            style={{ height: "100%" }}
-          >
-            <Image
-              src={`${basePath}/event-images/international-yoga-day-2025/3.jpeg`}
-              alt="Yoga"
-              fill
-              style={{ objectFit: "cover" }} // Ensures the image covers the area
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>International Yoga Day - 2025</h5>
-              <p>Slide 3</p>
-            </div>
-          </div>
+        <div className="carousel-inner" style={{ height: "87vh" }}>
+          {heroCarouselItems.map((item, index) => {
+            return (
+              <div
+                key={`carousel-item-${index}`}
+                className={`carousel-item position-relative w-100 ${
+                  index === 0 ? "active" : ""
+                }`}
+                style={{ height: "100%" }}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  style={{ objectFit: "cover" }} // Ensures the image covers the area
+                />
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>{item.caption}</h5>
+                  <p>{item.sub_Caption}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <button
           className="carousel-control-prev"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target="#heroCarousel"
           data-bs-slide="prev"
         >
           <span
@@ -101,7 +92,7 @@ function HeroSection() {
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target="#heroCarousel"
           data-bs-slide="next"
         >
           <span
