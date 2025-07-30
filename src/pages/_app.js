@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LoaderScreen from "@/components/LoaderScreen";
+import Footer from "@/components/Footer";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -42,6 +43,8 @@ export default function App({ Component, pageProps }) {
     <>
       {isLoading && <LoaderScreen />}
       <Component {...pageProps} />
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

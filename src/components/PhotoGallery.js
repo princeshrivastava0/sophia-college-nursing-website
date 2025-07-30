@@ -1,0 +1,297 @@
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { useState } from "react";
+
+function PhotoGallery() {
+  const router = useRouter();
+  const { basePath } = router;
+
+  const [activeImage, setActiveImage] = useState({
+    index: 0,
+    src: "",
+    altText: "",
+    visible: false,
+  });
+
+  const photos = [
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/1.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/2.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/3.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/4.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/5.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/6.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: `${basePath}/event-images/international-yoga-day-2025/7.jpeg`,
+      alt: "Yoga Day Celebration 1",
+    },
+    {
+      src: "",
+      alt: "Yoga Day Celebration 1",
+    },
+  ];
+
+  //   Image Preview Function
+  const previewImage = (activePhoto, photoSrc, altText, index) => {
+    if (photoSrc === "") {
+      return;
+    }
+
+    setActiveImage({
+      index: index,
+      src: photoSrc,
+      altText: altText,
+      visible: true,
+    });
+  };
+
+  //   Image Control Function
+  const imgControlBtn = (value) => {
+    const currentIndex = activeImage.index;
+
+    if (value === "prev") {
+      const newIndex = currentIndex > 0 ? currentIndex - 1 : photos.length - 1;
+      const newPhoto = photos[newIndex];
+
+      if (newPhoto.src) {
+        setActiveImage({
+          index: newIndex,
+          src: newPhoto.src,
+          altText: newPhoto.alt,
+          visible: true,
+        });
+      }
+    }
+
+    if (value === "next") {
+      const newIndex = currentIndex < photos.length - 1 ? currentIndex + 1 : 0;
+      const newPhoto = photos[newIndex];
+
+      if (newPhoto.src) {
+        setActiveImage({
+          index: newIndex,
+          src: newPhoto.src,
+          altText: newPhoto.alt,
+          visible: true,
+        });
+      }
+    }
+  };
+
+  return (
+    <>
+      <style jsx>{`
+        .photo-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          grid-auto-rows: 200px;
+          gap: 20px;
+          background: rgba(128, 128, 128, 0.3);
+          border-radius: 3px;
+          box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-card {
+          background: #ffffff; /* Frame background */
+          padding: 10px; /* Space inside the frame */
+          border: 2px solid #ddd; /* Frame border */
+          border-radius: 6px;
+          box-shadow: 0 0px 16px rgba(0, 0, 0, 0.2);
+          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .photo-card:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0px 24px rgba(255, 255, 255, 0.1);
+        }
+
+        .close-btn {
+          background: transparent;
+          outline: none;
+          border: none;
+          font-size: 2rem;
+        }
+
+        .close-btn:hover {
+          color: red;
+        }
+
+        .img-cntrl-btn:active {
+          transform: scale(0.95);
+        }
+
+        @media (min-width: 576px) {
+          .photo-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 992px) {
+          .photo-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+
+        @media screen and (max-width: 768px) {
+          .img-preview-container {
+            // border: 1px solid red;
+            max-width: 100% !important;
+            height: auto !important;
+          }
+        }
+      `}</style>
+      <section id="photo-gallery" className="p-5">
+        <h2
+          className="text-center text-uppercase fw-bold"
+          style={{ color: "#e74c3c" }}
+        >
+          Event Highlights
+        </h2>
+        {/* Photo Items */}
+        <div className="photo-grid mx-auto p-5" style={{ maxWidth: "1200px" }}>
+          {photos.map((photo, index) => {
+            return (
+              <div
+                key={`photo-${index}`}
+                className={`${photo.src ? "photo-card" : ""}`}
+              >
+                <Image
+                  id={`photo-id-${index}`}
+                  src={photo.src ? photo.src : `${basePath}/no-photo.jpg`}
+                  alt={photo.alt ? photo.alt : "No Photo Available"}
+                  width={100}
+                  height={100}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    cursor: photo.src ? "pointer" : "default",
+                    boxShadow: "0 0 5px rgba(0,0,0,0.5)",
+                  }}
+                  onClick={(activePhoto) =>
+                    previewImage(activePhoto, photo.src, photo.alt, index)
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Image Preview Feature */}
+      {activeImage.visible && (
+        <div
+          className="img-preview-wrapper position-fixed d-flex justify-content-center"
+          style={{
+            height: "100vh",
+            width: "100vw",
+            top: 0,
+            zIndex: 9999,
+            background: "rgba(0,0,0,0.5)",
+          }}
+        >
+          <div
+            className="position-relative my-auto img-preview-container"
+            style={{ height: "80%", maxWidth: "50%" }}
+          >
+            {/* Close Button */}
+            <span
+              className="d-inline-block mt-3 me-3 position-absolute"
+              style={{ right: 0 }}
+            >
+              <button
+                className="close-btn"
+                onClick={() => {
+                  setActiveImage({
+                    visible: false,
+                  });
+                }}
+              >
+                <i className="bi bi-x-octagon-fill"></i>
+              </button>
+            </span>
+            {/* Image Container */}
+            <Image
+              src={activeImage.src}
+              alt={activeImage.altText}
+              width={100}
+              height={100}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
+              sizes="100vw"
+              className="img-fluid rounded"
+            />
+
+            {/* Control Buttons */}
+            <div
+              className="d-flex justify-content-between align-items-center position-absolute"
+              style={{
+                width: "250px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                bottom: "20px",
+              }}
+            >
+              <button
+                type="button"
+                style={{
+                  background: "rgba(0,0,0,0.9)",
+                  outline: "none",
+                  border: "none",
+                  width: "100px",
+                  borderRadius: "5px",
+                }}
+                className="py-1 img-cntrl-btn"
+                onClick={() => imgControlBtn("prev")}
+              >
+                <i
+                  className="bi bi-skip-backward-fill fw-bold"
+                  style={{ color: "#fff", fontSize: "1.25rem" }}
+                ></i>
+              </button>
+              <button
+                type="button"
+                style={{
+                  background: "rgba(0,0,0,0.9)",
+                  outline: "none",
+                  border: "none",
+                  width: "100px",
+                  borderRadius: "5px",
+                }}
+                className="py-1 img-cntrl-btn"
+                onClick={() => imgControlBtn("next")}
+              >
+                <i
+                  className="bi bi-skip-forward-fill"
+                  style={{ color: "#fff", fontSize: "1.25rem" }}
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default PhotoGallery;

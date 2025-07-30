@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import PhotoGallery from "@/components/PhotoGallery";
 
 export default function Home() {
   // Using useRouter to get the base path for images
@@ -35,10 +35,8 @@ export default function Home() {
 
       <div style={{ height: "100vh" }}></div>
 
-      {/* Footer */}
-      <div>
-        <Footer />
-      </div>
+      {/* Photo Gallery */}
+      <PhotoGallery />
     </>
   );
 }

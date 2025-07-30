@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function ContactBanner() {
   const ContactDetails = [
     {
@@ -17,8 +19,8 @@ function ContactBanner() {
           overflow: hidden;
         }
       `}</style>
-      <div className="contact_banner position-fixed w-100 d-flex align-items-center justify-content-end px-3">
-        <div className="d-flex justify-content-end align-items-center px-3 mx-2">
+      <div className="contact_banner position-fixed w-100 d-flex align-items-center justify-content-center justify-content-md-end px-3">
+        <div className="d-flex align-items-center px-3 mx-2">
           {ContactDetails.map((details, index) => {
             return (
               <span
@@ -34,11 +36,14 @@ function ContactBanner() {
                     className={`${details.icon} me-1`}
                     style={{ fontSize: "13px", fontWeight: 900 }}
                   ></i>
-                  <h6
+
+                  <Link
+                    href={`tel:${details.text}`}
+                    className="text-white text-decoration-none"
                     style={{ fontSize: "13px", margin: "0", fontWeight: 600 }}
                   >
-                    {details.text}
-                  </h6>
+                    {details.text}{" "}
+                  </Link>
                 </span>
                 {index < 1 && "|"}
               </span>

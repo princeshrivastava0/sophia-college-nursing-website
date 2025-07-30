@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
+
+
 function HeroSection() {
   const router = useRouter();
   const { basePath } = router;
@@ -33,7 +35,7 @@ function HeroSection() {
     >
       <div
         id="heroCarousel"
-        className="carousel slide carousel-fade w-100"
+        className={`carousel slide carousel-fade w-100 pointer-event`}
         data-bs-ride="carousel"
         data-bs-interval="2000"
         data-bs-pause="hover"

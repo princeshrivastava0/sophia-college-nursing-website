@@ -51,7 +51,7 @@ function Footer() {
         @media screen and (max-width: 768px) {
           .footer-row-1-items {
             width: 100% !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
           }
 
           .google-map-width {
@@ -79,6 +79,9 @@ function Footer() {
 
           .footer-row-1-items:nth-child(3) {
             width: 100% !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+            padding-top: 20px !important;
+            margin-top: 20px !important;
           }
 
           .google-map-width {
@@ -311,8 +314,8 @@ function Footer() {
             }}
           >
             &copy; {new Date().getFullYear()} Sophia Institutes of Medical
-            Science. <br />
-            All rights reserved.
+            Science <br />
+            All rights reserved
           </h6>
           <a
             href="https://www.princeshrivastava.com"
