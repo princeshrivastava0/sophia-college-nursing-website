@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import CustomHead from "@/components/CustomHead";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import PhotoGallery from "@/components/PhotoGallery";
+import EventHighlights from "@/components/EventHighlights";
 
 export default function Home() {
   // Using useRouter to get the base path for images
@@ -35,8 +35,8 @@ export default function Home() {
 
       <div style={{ height: "100vh" }}></div>
 
-      {/* Photo Gallery */}
-      <PhotoGallery />
+      {/* Event Highlights */}
+      <EventHighlights />
     </>
   );
 }

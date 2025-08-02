@@ -48,7 +48,7 @@ function Footer() {
           text-align: justify;
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           .footer-row-1-items {
             width: 100% !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -64,7 +64,7 @@ function Footer() {
           }
         }
 
-        @media screen and (min-width: 769px) and (max-width: 1280px) {
+        @media screen and (min-width: 768px) and (max-width: 1280px) {
           .contact-text-align {
             text-align: left !important;
           }
