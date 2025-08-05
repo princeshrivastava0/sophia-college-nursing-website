@@ -48,6 +48,7 @@ function EventHighlights() {
     img.onerror = () => {
       setBrokenPhotos((prev) => ({ ...prev, [index]: true }));
       setIsLoading(false);
+      setIsImgLoaded(true);
     };
   };
 
