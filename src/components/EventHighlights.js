@@ -16,7 +16,7 @@ function EventHighlights() {
 
   const photos = eventHightlightPhotos(basePath);
   const [brokenPhotos, setBrokenPhotos] = useState({});
-  const [isPreviewLoading, setIsPreviewLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   //   Image Preview Function
   const previewImage = (activePhoto, photoSrc, altText, index) => {
@@ -24,14 +24,29 @@ function EventHighlights() {
       return;
     }
 
-    setIsPreviewLoading(true);
-
+    setIsLoading(true);
     setActiveImage({
-      index: index,
-      src: photoSrc,
-      altText: altText,
       visible: true,
     });
+
+    // Start loading image
+    const img = new window.Image();
+    img.src = photoSrc;
+
+    img.onload = () => {
+      setActiveImage({
+        index: index,
+        src: photoSrc,
+        altText: altText,
+        visible: true,
+      });
+      setIsLoading(false);
+    };
+
+    img.onerror = () => {
+      setBrokenPhotos((prev) => ({ ...prev, [index]: true }));
+      setIsLoading(false);
+    };
   };
 
   //   Image Control Function
@@ -189,16 +204,18 @@ function EventHighlights() {
             background: "rgba(0,0,0,0.5)",
           }}
         >
-          {isPreviewLoading ? (
+          {isLoading && (
             <div
-              className="position-relative my-auto img-preview-container d-flex justify-content-center align-items-center"
+              className="position-absolute my-auto img-preview-container d-flex justify-content-center align-items-center"
               style={{ height: "80%", maxWidth: "50%" }}
             >
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
             </div>
-          ) : (
+          )}
+
+          {!isLoading && (
             <div
               className="position-relative my-auto img-preview-container"
               style={{ height: "80%", maxWidth: "50%" }}
@@ -232,8 +249,6 @@ function EventHighlights() {
                 }}
                 sizes="100vw"
                 className="img-fluid rounded"
-                onLoad={() => setIsPreviewLoading(false)}
-                onError={() => setIsPreviewLoading(false)}
               />
 
               {/* Control Buttons */}
