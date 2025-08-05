@@ -17,6 +17,7 @@ function EventHighlights() {
   const photos = eventHightlightPhotos(basePath);
   const [brokenPhotos, setBrokenPhotos] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
 
   //   Image Preview Function
   const previewImage = (activePhoto, photoSrc, altText, index) => {
@@ -25,6 +26,10 @@ function EventHighlights() {
     }
 
     setIsLoading(true);
+    setIsImgLoaded(false);
+    setActiveImage({
+      visible: true,
+    });
 
     // Start loading image
     const img = new window.Image();
@@ -218,21 +223,24 @@ function EventHighlights() {
               style={{ height: "80%", maxWidth: "50%" }}
             >
               {/* Close Button */}
-              <span
-                className="d-inline-block mt-3 me-3 position-absolute"
-                style={{ right: 0 }}
-              >
-                <button
-                  className="close-btn"
-                  onClick={() => {
-                    setActiveImage({
-                      visible: false,
-                    });
-                  }}
+              {isImgLoaded && (
+                <span
+                  className="d-inline-block mt-3 me-3 position-absolute"
+                  style={{ right: 0 }}
                 >
-                  <i className="bi bi-x-octagon-fill"></i>
-                </button>
-              </span>
+                  <button
+                    className="close-btn"
+                    onClick={() => {
+                      setActiveImage({
+                        visible: false,
+                      });
+                    }}
+                  >
+                    <i className="bi bi-x-octagon-fill"></i>
+                  </button>
+                </span>
+              )}
+
               {/* Image Container */}
               <Image
                 src={activeImage.src}
@@ -246,53 +254,56 @@ function EventHighlights() {
                 }}
                 sizes="100vw"
                 className="img-fluid rounded"
+                onLoadingComplete={() => setIsImgLoaded(true)}
               />
 
               {/* Control Buttons */}
-              <div
-                className="d-flex justify-content-between align-items-center position-absolute"
-                style={{
-                  width: "250px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  bottom: "20px",
-                }}
-              >
-                <button
-                  type="button"
+              {isImgLoaded && (
+                <div
+                  className="d-flex justify-content-between align-items-center position-absolute"
                   style={{
-                    background: "rgba(0,0,0,0.9)",
-                    outline: "none",
-                    border: "none",
-                    width: "100px",
-                    borderRadius: "5px",
+                    width: "250px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    bottom: "20px",
                   }}
-                  className="py-1 img-cntrl-btn"
-                  onClick={() => imgControlBtn("prev")}
                 >
-                  <i
-                    className="bi bi-skip-backward-fill fw-bold"
-                    style={{ color: "#fff", fontSize: "1.25rem" }}
-                  ></i>
-                </button>
-                <button
-                  type="button"
-                  style={{
-                    background: "rgba(0,0,0,0.9)",
-                    outline: "none",
-                    border: "none",
-                    width: "100px",
-                    borderRadius: "5px",
-                  }}
-                  className="py-1 img-cntrl-btn"
-                  onClick={() => imgControlBtn("next")}
-                >
-                  <i
-                    className="bi bi-skip-forward-fill"
-                    style={{ color: "#fff", fontSize: "1.25rem" }}
-                  ></i>
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    style={{
+                      background: "rgba(0,0,0,0.9)",
+                      outline: "none",
+                      border: "none",
+                      width: "100px",
+                      borderRadius: "5px",
+                    }}
+                    className="py-1 img-cntrl-btn"
+                    onClick={() => imgControlBtn("prev")}
+                  >
+                    <i
+                      className="bi bi-skip-backward-fill fw-bold"
+                      style={{ color: "#fff", fontSize: "1.25rem" }}
+                    ></i>
+                  </button>
+                  <button
+                    type="button"
+                    style={{
+                      background: "rgba(0,0,0,0.9)",
+                      outline: "none",
+                      border: "none",
+                      width: "100px",
+                      borderRadius: "5px",
+                    }}
+                    className="py-1 img-cntrl-btn"
+                    onClick={() => imgControlBtn("next")}
+                  >
+                    <i
+                      className="bi bi-skip-forward-fill"
+                      style={{ color: "#fff", fontSize: "1.25rem" }}
+                    ></i>
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
