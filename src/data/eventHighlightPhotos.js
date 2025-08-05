@@ -20,7 +20,7 @@ export const eventHightlightPhotos = (basePath) => [
     alt: "Yoga Day Celebration 1",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/9.jpeg`,
+    src: `${basePath}/event-images/international-yoga-day-2025/6.jpeg`,
     alt: "Yoga Day Celebration 1",
   },
   {

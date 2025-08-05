@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { eventHightlightPhotos } from "@/data/eventHighlightPhotos";
 
 function EventHighlights() {
   const router = useRouter();
   const { basePath } = router;
+  const spinnerTimeoutRef = useRef(null);
+  const willShowSpinner = useRef(false);
+  const [isImageFailed, setIsImageFailed] = useState(false);
 
   const [activeImage, setActiveImage] = useState({
     index: 0,
@@ -19,21 +22,37 @@ function EventHighlights() {
   const [isLoading, setIsLoading] = useState(false);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
 
+  const showImage = (index, photoSrc, altText) => {
+    // Cancel previous spinner timer (if any)
+    if (spinnerTimeoutRef.current) {
+      clearTimeout(spinnerTimeoutRef.current);
+    }
+
+    setIsLoading(false);
+    willShowSpinner.current = true;
+
+    // Delay spinner visibility
+    spinnerTimeoutRef.current = setTimeout(() => {
+      if (willShowSpinner.current) {
+        setIsLoading(true);
+      }
+    }, 300); // Only show spinner if loading takes longer than 300ms
+
+    setActiveImage({
+      index,
+      src: photoSrc,
+      altText,
+      visible: true,
+    });
+  };
+
   //   Image Preview Function
   const previewImage = (activePhoto, photoSrc, altText, index) => {
     if (photoSrc === "") {
       return;
     }
 
-    setActiveImage({
-      index: index,
-      src: photoSrc,
-      altText: altText,
-      visible: true,
-    });
-
-    setIsImgLoaded(false);
-    setIsLoading(true);
+    showImage(index, photoSrc, altText);
   };
 
   //   Image Control Function
@@ -53,16 +72,50 @@ function EventHighlights() {
 
       // Skip broken or missing images
       if (photo.src && !isBroken) {
-        setActiveImage({
-          index: currentIndex,
-          src: photo.src,
-          altText: photo.alt,
-          visible: true,
-        });
+        showImage(currentIndex, photo.src, photo.alt);
         return;
       }
     }
   };
+
+  // Keyboard Escape Exit and Arrow Keys Navigation
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!activeImage.visible) return;
+
+      switch (event.key) {
+        case "Escape":
+          setActiveImage({
+            index: 0,
+            src: "",
+            altText: "",
+            visible: false,
+          });
+          setIsImgLoaded(false);
+          setIsLoading(false);
+          setIsImageFailed(false);
+          break;
+
+        case "ArrowLeft":
+          imgControlBtn("prev");
+          break;
+
+        case "ArrowRight":
+          imgControlBtn("next");
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeImage.visible, activeImage.index, brokenPhotos]);
 
   return (
     <>
@@ -106,6 +159,10 @@ function EventHighlights() {
           transform: scale(0.95);
         }
 
+        .img-preview-container {
+          max-width: 100% !important;
+        }
+
         @media (min-width: 768px) {
           .photo-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -119,16 +176,16 @@ function EventHighlights() {
         }
 
         @media screen and (max-width: 767px) {
-          .img-preview-container {
-            max-width: 100% !important;
-            height: auto !important;
-          }
-
           .photo-grid {
             max-width: 400px !important;
           }
+
+          .img-preview-container {
+            height: auto !important;
+          }
         }
       `}</style>
+
       <section id="photo-gallery" className="p-5">
         <h2
           className="text-center text-uppercase fw-bold"
@@ -194,9 +251,9 @@ function EventHighlights() {
           {isLoading && (
             <div
               className="position-absolute my-auto img-preview-container d-flex justify-content-center align-items-center"
-              style={{ height: "80%", maxWidth: "50%" }}
+              style={{ height: "80%", maxWidth: "50%", zIndex: 9999 }}
             >
-              <div className="spinner-border" role="status">
+              <div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
             </div>
@@ -211,7 +268,7 @@ function EventHighlights() {
             style={{ height: "80%", maxWidth: "50%" }}
           >
             {/* Close Button */}
-            {(isImgLoaded || !isLoading) && (
+            {(isImgLoaded || isImageFailed) && (
               <span
                 className="d-inline-block mt-3 me-3 position-absolute"
                 style={{ right: 0 }}
@@ -220,8 +277,13 @@ function EventHighlights() {
                   className="close-btn"
                   onClick={() => {
                     setActiveImage({
+                      index: 0,
+                      src: "",
+                      altText: "",
                       visible: false,
                     });
+                    setIsImgLoaded(false);
+                    setIsLoading(false);
                   }}
                 >
                   <i className="bi bi-x-octagon-fill"></i>
@@ -240,15 +302,26 @@ function EventHighlights() {
                 height: "100%",
                 objectFit: "contain",
               }}
-              sizes="100vw"
+              sizes="(max-width: 767px), 95vw, (max-width: 1200px), 80vw"
               className="img-fluid rounded"
               onLoadingComplete={() => {
+                if (spinnerTimeoutRef.current) {
+                  clearTimeout(spinnerTimeoutRef.current);
+                }
+                willShowSpinner.current = false;
                 setIsImgLoaded(true);
                 setIsLoading(false);
+                setIsImageFailed(false);
               }}
               onError={() => {
+                if (spinnerTimeoutRef.current) {
+                  clearTimeout(spinnerTimeoutRef.current);
+                }
+                willShowSpinner.current = false;
                 setIsImgLoaded(true);
                 setIsLoading(false);
+                setIsImageFailed(true);
+
                 setBrokenPhotos((prev) => ({
                   ...prev,
                   [activeImage.index]: true,
