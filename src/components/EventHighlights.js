@@ -202,12 +202,16 @@ function EventHighlights() {
             </div>
           )}
 
+          {!isLoading && brokenPhotos[activeImage.index] && (
+            <p className="text-center text-light mt-3">Image failed to load.</p>
+          )}
+
           <div
             className="position-relative my-auto img-preview-container"
             style={{ height: "80%", maxWidth: "50%" }}
           >
             {/* Close Button */}
-            {isImgLoaded && (
+            {(isImgLoaded || !isLoading) && (
               <span
                 className="d-inline-block mt-3 me-3 position-absolute"
                 style={{ right: 0 }}
@@ -241,6 +245,14 @@ function EventHighlights() {
               onLoadingComplete={() => {
                 setIsImgLoaded(true);
                 setIsLoading(false);
+              }}
+              onError={() => {
+                setIsImgLoaded(true);
+                setIsLoading(false);
+                setBrokenPhotos((prev) => ({
+                  ...prev,
+                  [activeImage.index]: true,
+                }));
               }}
             />
 
