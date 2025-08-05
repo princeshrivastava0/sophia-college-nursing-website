@@ -131,12 +131,12 @@ function EventHighlights() {
         }
 
         .photo-card {
-          background: #ffffff; /* Frame background */
-          padding: 10px; /* Space inside the frame */
-          border: 2px solid #ddd; /* Frame border */
+          background: #ffffff;
+          border: 6px solid #fff;
           border-radius: 6px;
           box-shadow: 0 0px 16px rgba(0, 0, 0, 0.2);
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+          overflow: hidden;
         }
 
         .photo-card:hover {
@@ -203,32 +203,37 @@ function EventHighlights() {
                 key={`photo-${index}`}
                 className={`${!photo.src || isBroken ? "" : "photo-card"}`}
               >
-                <Image
-                  id={`photo-id-${index}`}
-                  src={
-                    !photo.src || isBroken
-                      ? `${basePath}/no-photo.jpg`
-                      : photo.src
-                  }
-                  alt={photo.alt || "No Photo Available"}
-                  width={100}
-                  height={100}
+                <div
                   style={{
+                    position: "relative",
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
-                    cursor: photo.src && !isBroken ? "pointer" : "default",
-                    boxShadow: "0 0 5px rgba(0,0,0,0.5)",
                   }}
-                  onClick={(activePhoto) => {
-                    if (!isBroken && photo.src) {
-                      previewImage(activePhoto, photo.src, photo.alt, index);
+                >
+                  <Image
+                    id={`photo-id-${index}`}
+                    src={
+                      !photo.src || isBroken
+                        ? `${basePath}/no-photo.jpg`
+                        : photo.src
                     }
-                  }}
-                  onError={() => {
-                    setBrokenPhotos((prev) => ({ ...prev, [index]: true }));
-                  }}
-                />
+                    alt={photo.alt || "No Photo Available"}
+                    fill
+                    style={{
+                      objectFit: "cover",
+                      cursor: photo.src && !isBroken ? "pointer" : "default",
+                      boxShadow: "0 0 5px rgba(0,0,0,0.5)",
+                    }}
+                    onClick={(activePhoto) => {
+                      if (!isBroken && photo.src) {
+                        previewImage(activePhoto, photo.src, photo.alt, index);
+                      }
+                    }}
+                    onError={() => {
+                      setBrokenPhotos((prev) => ({ ...prev, [index]: true }));
+                    }}
+                  />
+                </div>
               </div>
             );
           })}
