@@ -25,9 +25,6 @@ function EventHighlights() {
     }
 
     setIsLoading(true);
-    setActiveImage({
-      visible: true,
-    });
 
     // Start loading image
     const img = new window.Image();
@@ -195,7 +192,7 @@ function EventHighlights() {
       {/* Image Preview Feature */}
       {activeImage.visible && (
         <div
-          className="img-preview-wrapper position-fixed d-flex justify-content-center"
+          className="img-preview-wrapper position-fixed d-flex justify-content-center align-items-center"
           style={{
             height: "100vh",
             width: "100vw",
