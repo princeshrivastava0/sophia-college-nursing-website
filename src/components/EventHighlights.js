@@ -137,6 +137,7 @@ function EventHighlights() {
           box-shadow: 0 0px 16px rgba(0, 0, 0, 0.2);
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
           overflow: hidden;
+          min-height: 200px;
         }
 
         .photo-card:hover {
@@ -208,6 +209,7 @@ function EventHighlights() {
                     position: "relative",
                     width: "100%",
                     height: "100%",
+                    backgroundColor: "#f0f0f0",
                   }}
                 >
                   <Image
