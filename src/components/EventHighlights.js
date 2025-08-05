@@ -213,7 +213,6 @@ function EventHighlights() {
                   alt={photo.alt || "No Photo Available"}
                   width={100}
                   height={100}
-                  unoptimized
                   style={{
                     width: "100%",
                     height: "100%",
