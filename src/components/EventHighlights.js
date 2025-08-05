@@ -25,31 +25,15 @@ function EventHighlights() {
       return;
     }
 
-    setIsLoading(true);
-    setIsImgLoaded(false);
     setActiveImage({
+      index: index,
+      src: photoSrc,
+      altText: altText,
       visible: true,
     });
 
-    // Start loading image
-    const img = new window.Image();
-    img.src = photoSrc;
-
-    img.onload = () => {
-      setActiveImage({
-        index: index,
-        src: photoSrc,
-        altText: altText,
-        visible: true,
-      });
-      setIsLoading(false);
-    };
-
-    img.onerror = () => {
-      setBrokenPhotos((prev) => ({ ...prev, [index]: true }));
-      setIsLoading(false);
-      setIsImgLoaded(true);
-    };
+    setIsImgLoaded(false);
+    setIsLoading(true);
   };
 
   //   Image Control Function
@@ -218,95 +202,96 @@ function EventHighlights() {
             </div>
           )}
 
-          {!isLoading && (
-            <div
-              className="position-relative my-auto img-preview-container"
-              style={{ height: "80%", maxWidth: "50%" }}
-            >
-              {/* Close Button */}
-              {isImgLoaded && (
-                <span
-                  className="d-inline-block mt-3 me-3 position-absolute"
-                  style={{ right: 0 }}
-                >
-                  <button
-                    className="close-btn"
-                    onClick={() => {
-                      setActiveImage({
-                        visible: false,
-                      });
-                    }}
-                  >
-                    <i className="bi bi-x-octagon-fill"></i>
-                  </button>
-                </span>
-              )}
-
-              {/* Image Container */}
-              <Image
-                src={activeImage.src}
-                alt={activeImage.altText}
-                width={100}
-                height={100}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-                sizes="100vw"
-                className="img-fluid rounded"
-                onLoadingComplete={() => setIsImgLoaded(true)}
-              />
-
-              {/* Control Buttons */}
-              {isImgLoaded && (
-                <div
-                  className="d-flex justify-content-between align-items-center position-absolute"
-                  style={{
-                    width: "250px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: "20px",
+          <div
+            className="position-relative my-auto img-preview-container"
+            style={{ height: "80%", maxWidth: "50%" }}
+          >
+            {/* Close Button */}
+            {isImgLoaded && (
+              <span
+                className="d-inline-block mt-3 me-3 position-absolute"
+                style={{ right: 0 }}
+              >
+                <button
+                  className="close-btn"
+                  onClick={() => {
+                    setActiveImage({
+                      visible: false,
+                    });
                   }}
                 >
-                  <button
-                    type="button"
-                    style={{
-                      background: "rgba(0,0,0,0.9)",
-                      outline: "none",
-                      border: "none",
-                      width: "100px",
-                      borderRadius: "5px",
-                    }}
-                    className="py-1 img-cntrl-btn"
-                    onClick={() => imgControlBtn("prev")}
-                  >
-                    <i
-                      className="bi bi-skip-backward-fill fw-bold"
-                      style={{ color: "#fff", fontSize: "1.25rem" }}
-                    ></i>
-                  </button>
-                  <button
-                    type="button"
-                    style={{
-                      background: "rgba(0,0,0,0.9)",
-                      outline: "none",
-                      border: "none",
-                      width: "100px",
-                      borderRadius: "5px",
-                    }}
-                    className="py-1 img-cntrl-btn"
-                    onClick={() => imgControlBtn("next")}
-                  >
-                    <i
-                      className="bi bi-skip-forward-fill"
-                      style={{ color: "#fff", fontSize: "1.25rem" }}
-                    ></i>
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
+                  <i className="bi bi-x-octagon-fill"></i>
+                </button>
+              </span>
+            )}
+
+            {/* Image Container */}
+            <Image
+              src={activeImage.src}
+              alt={activeImage.altText}
+              width={100}
+              height={100}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
+              sizes="100vw"
+              className="img-fluid rounded"
+              onLoadingComplete={() => {
+                setIsImgLoaded(true);
+                setIsLoading(false);
+              }}
+            />
+
+            {/* Control Buttons */}
+            {isImgLoaded && (
+              <div
+                className="d-flex justify-content-between align-items-center position-absolute"
+                style={{
+                  width: "250px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  bottom: "20px",
+                }}
+              >
+                <button
+                  type="button"
+                  style={{
+                    background: "rgba(0,0,0,0.9)",
+                    outline: "none",
+                    border: "none",
+                    width: "100px",
+                    borderRadius: "5px",
+                  }}
+                  className="py-1 img-cntrl-btn"
+                  onClick={() => imgControlBtn("prev")}
+                >
+                  <i
+                    className="bi bi-skip-backward-fill fw-bold"
+                    style={{ color: "#fff", fontSize: "1.25rem" }}
+                  ></i>
+                </button>
+                <button
+                  type="button"
+                  style={{
+                    background: "rgba(0,0,0,0.9)",
+                    outline: "none",
+                    border: "none",
+                    width: "100px",
+                    borderRadius: "5px",
+                  }}
+                  className="py-1 img-cntrl-btn"
+                  onClick={() => imgControlBtn("next")}
+                >
+                  <i
+                    className="bi bi-skip-forward-fill"
+                    style={{ color: "#fff", fontSize: "1.25rem" }}
+                  ></i>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
