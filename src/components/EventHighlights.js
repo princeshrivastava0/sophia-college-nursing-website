@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { eventHightlightPhotos } from "@/data/eventHighlightPhotos";
+import Link from "next/link";
 
 function EventHighlights() {
   const router = useRouter();
@@ -164,6 +165,24 @@ function EventHighlights() {
           max-width: 100% !important;
         }
 
+        .view-more-btn {
+          border: none;
+          outline: none;
+          font-weight: 700;
+          background-color: #e74c3c;
+          color: #fff;
+          letter-spacing: 0.15rem;
+          transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in;
+        }
+
+        .view-more-btn:hover {
+          box-shadow: 0 0px 24px rgba(255, 0, 0, 1);
+        }
+
+        .view-more-btn:active {
+          transform: scale(0.95);
+        }
+
         @media (min-width: 768px) {
           .photo-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -187,7 +206,7 @@ function EventHighlights() {
         }
       `}</style>
 
-      <section id="photo-gallery" className="p-5">
+      <section id="event-highlights" className="p-5">
         <h2
           className="text-center text-uppercase fw-bold"
           style={{ color: "#e74c3c" }}
@@ -239,6 +258,15 @@ function EventHighlights() {
               </div>
             );
           })}
+        </div>
+
+        {/* View More Button */}
+        <div className="text-center px-3 pt-5">
+          <Link href={"/gallery"}>
+            <button className="view-more-btn p-3 px-5 rounded-pill">
+              View More
+            </button>
+          </Link>
         </div>
       </section>
 
