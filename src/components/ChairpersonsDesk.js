@@ -30,14 +30,14 @@ function ChairpersonsDesk() {
         style={{ backgroundColor: "#d6d6d654" }}
         className="p-5 text-center w-100"
       >
-        <h2
-          className="fw-bold"
-          style={{ textTransform: "uppercase", color: "#e74c3c" }}
-        >
-          Chairperson's Message
-        </h2>
         {/* Container */}
-        <div className="container my-3 mx-auto" style={{ width: "80%" }}>
+        <div className="container mx-auto" style={{ width: "80%" }}>
+          <h2
+            className="fw-bold mb-3"
+            style={{ textTransform: "uppercase", color: "#e74c3c" }}
+          >
+            Chairperson's Message
+          </h2>
           <div>
             {/* Chairperson's Image floated right */}
             <div
@@ -51,6 +51,8 @@ function ChairpersonsDesk() {
                 position: "relative",
                 shapeOutside: "circle()",
                 WebkitShapeOutside: "circle()",
+                boxShadow: "0 0 15px rgba(0,0,0,0.5)",
+                border: "2px solid rgba(0,0,0,0.3)",
               }}
             >
               <Image
@@ -68,7 +70,7 @@ function ChairpersonsDesk() {
                 fontWeight: "500",
                 fontSize: "1.15rem",
               }}
-              className=""
+              className="m-0"
             >
               <span style={{ fontSize: "1.5rem" }}>
                 <i className="bi bi-quote"></i>
