@@ -3,6 +3,7 @@ import CustomHead from "@/components/CustomHead";
 import HeroSection from "@/components/HeroSection";
 import EventHighlights from "@/components/EventHighlights";
 import ChairpersonsDesk from "@/components/ChairpersonsDesk";
+import VisionMission from "@/components/VisionMission";
 
 export default function Home() {
   // Using useRouter to get the base path for images
@@ -37,6 +38,11 @@ export default function Home() {
 
       {/* Event Highlights */}
       <EventHighlights />
+
+      {/* Vision-Mission */}
+      <div>
+        <VisionMission />
+      </div>
     </>
   );
 }

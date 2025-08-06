@@ -67,10 +67,7 @@ function Header({ portfolioBtn, activeSection }) {
       title: "Home",
       path: "/",
     },
-    {
-      title: "Chairperson Desk",
-      path: "",
-    },
+
     {
       title: "Staff",
       path: "",
