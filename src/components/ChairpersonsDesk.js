@@ -28,7 +28,7 @@ function ChairpersonsDesk() {
       <section
         id="chairperson-desk"
         style={{ backgroundColor: "#d6d6d654" }}
-        className="p-5 px-3 px-md-5 text-center w-100"
+        className="p-5 px-2 px-md-5 text-center w-100"
       >
         {/* Container */}
         <div className="container mx-auto" style={{ width: "80%" }}>
