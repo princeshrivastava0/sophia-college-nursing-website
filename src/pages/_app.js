@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LoaderScreen from "@/components/LoaderScreen";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function App({ Component, pageProps }) {
@@ -42,6 +43,10 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       {isLoading && <LoaderScreen />}
+      {/* Header */}
+      <div style={{ height: "13vh" }}>
+        <Header />
+      </div>
       <Component {...pageProps} />
       {/* Footer */}
       <Footer />

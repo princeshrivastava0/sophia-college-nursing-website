@@ -85,7 +85,7 @@ function Header({ portfolioBtn, activeSection }) {
     },
     {
       title: "Gallery",
-      path: "",
+      path: "/gallery",
     },
     {
       title: "Contact Us",
@@ -229,7 +229,7 @@ function Header({ portfolioBtn, activeSection }) {
                   <Link
                     className={`text-decoration-none mx-4`}
                     key={`nav-item-${index}`}
-                    href={`#${item.path}`}
+                    href={`${item.path}`}
                     onClick={() => {
                       setIsActiveTab(item.title);
                       isTabClicked.current = true;

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import CustomHead from "@/components/CustomHead";
-import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import EventHighlights from "@/components/EventHighlights";
+import ChairpersonsDesk from "@/components/ChairpersonsDesk";
 
 export default function Home() {
   // Using useRouter to get the base path for images
@@ -18,11 +18,6 @@ export default function Home() {
         url={"https://sophiainstitutes.com/nursing"}
       />
 
-      {/* Header */}
-      <div style={{ height: "13vh" }}>
-        <Header />
-      </div>
-
       {/* Hero Section */}
       <div
         style={{
@@ -31,6 +26,11 @@ export default function Home() {
         }}
       >
         <HeroSection />
+      </div>
+
+      {/* Chairperson's Desk */}
+      <div>
+        <ChairpersonsDesk />
       </div>
 
       <div style={{ height: "100vh" }}></div>
