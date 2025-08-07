@@ -15,7 +15,7 @@ function CustomHead({
         content="Sophia Institute of Medical Science, Sophia Nursing College, Nursing College Gwalior, Nursing College Madhya Pradesh"
       />
       <meta name="description" content={description} />
-      <title key={title}>{`Sophia Nursing College | ${title}`}</title>
+      <title key={title}>{`${title} | Sophia Nursing College`}</title>
       <link rel="icon" href="/nursing/favicon.png" />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={url} />

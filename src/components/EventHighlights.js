@@ -202,6 +202,7 @@ function EventHighlights() {
 
           .img-preview-container {
             height: auto !important;
+            width: 95% !important;
           }
         }
       `}</style>
@@ -306,7 +307,10 @@ function EventHighlights() {
 
           <div
             className="position-relative my-auto img-preview-container"
-            style={{ height: "80%", maxWidth: "50%" }}
+            style={{
+              height: "80%",
+              maxWidth: "50%",
+            }}
           >
             {/* Close Button */}
             {(isImgLoaded || isImageFailed) && (
@@ -345,7 +349,7 @@ function EventHighlights() {
               }}
               sizes="(max-width: 767px), 95vw, (max-width: 1200px), 80vw"
               className="img-fluid rounded"
-              onLoadingComplete={() => {
+              onLoad={() => {
                 if (spinnerTimeoutRef.current) {
                   clearTimeout(spinnerTimeoutRef.current);
                 }

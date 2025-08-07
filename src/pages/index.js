@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import CustomHead from "@/components/CustomHead";
 import HeroSection from "@/components/HeroSection";
 import EventHighlights from "@/components/EventHighlights";
@@ -7,9 +6,6 @@ import VisionMission from "@/components/VisionMission";
 import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
-  // Using useRouter to get the base path for images
-  const { basePath } = useRouter();
-
   return (
     <>
       <CustomHead
@@ -23,8 +19,10 @@ export default function Home() {
       {/* Hero Section */}
       <div
         style={{
-          height: "87vh",
+          height: "100vh",
           overflow: "hidden",
+          paddingTop: "100px",
+          backgroundColor: "#d6d6d654",
         }}
       >
         <HeroSection />

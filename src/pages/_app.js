@@ -44,9 +44,7 @@ export default function App({ Component, pageProps }) {
     <>
       {isLoading && <LoaderScreen />}
       {/* Header */}
-      <div style={{ height: "13vh" }}>
-        <Header />
-      </div>
+      <Header />
       <Component {...pageProps} />
       {/* Footer */}
       <Footer />

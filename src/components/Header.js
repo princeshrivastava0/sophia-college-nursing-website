@@ -42,22 +42,27 @@ function Header() {
     {
       title: "Home",
       path: "/",
+      icon: "house",
     },
     {
       title: "Courses",
       path: "/courses",
+      icon: "journal-text",
     },
     {
       title: "Gallery",
       path: "/gallery",
+      icon: "image",
     },
     {
       title: "Staff",
       path: "/staff",
+      icon: "people-fill",
     },
     {
       title: "Contact Us",
       path: "/contact",
+      icon: "telephone-inbound-fill",
     },
   ];
 
@@ -129,7 +134,7 @@ function Header() {
       <header
         className="position-fixed w-100"
         style={{
-          top: "25px",
+          top: "30px",
           height: "70px",
           left: "50%",
           transform: "translateX(-50%)",
@@ -171,10 +176,12 @@ function Header() {
               <span
                 style={{
                   display: "inline-block",
+                  transition: "transform 0.3s ease",
+                  transform: isDrawerOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               >
                 <i
-                  className={`bi bi-list`}
+                  className={`bi bi-${isDrawerOpen ? "x" : "list"}`}
                   style={{ fontSize: "2rem", color: "#444444" }}
                 ></i>
               </span>
@@ -219,47 +226,27 @@ function Header() {
           left: 0,
           background: "rgba(0, 0, 0, 0.5)",
         }}
+        onClick={() => setIsDrawerOpen(false)}
       >
         <nav
           className="d-flex flex-column align-items-left shadow py-5 px-3"
           style={{
             maxWidth: "250px",
             width: "75%",
-            backgroundColor: "#444444",
+            backgroundColor: "#181818ff",
             transition: "transform 0.3s ease-in-out",
             transform: isDrawerOpen ? "translateX(0%)" : "translateX(-100%)",
           }}
         >
-          {/* Close Btn */}
-          <button
-            className="d-md-none position-absolute m-3"
-            style={{
-              backgroundColor: "transparent",
-              outline: "none",
-              border: "none",
-              right: 0,
-              top: 0,
-              width: "3rem",
-              height: "3rem",
-            }}
-            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          >
-            <span
-              style={{
-                display: "inline-block",
-              }}
-            >
-              <i
-                className={`bi bi-x-octagon`}
-                style={{ fontSize: "2rem", color: "#ffffffff" }}
-              ></i>
-            </span>
-          </button>
-
           {/* Logo */}
           <span
-            className="text-center my-5 mb-3 pb-4"
-            style={{ width: "100%", borderBottom: "1px solid rgba(0,0,0,0.5)" }}
+            className="text-center pb-4 mb-3"
+            style={{
+              width: "100%",
+              borderBottom: "3px double #e74c3c",
+              borderBottomRightRadius: "3px",
+              borderBottomLeftRadius: "3px",
+            }}
           >
             <Image
               src={`${basePath}/favicon.png`}
@@ -274,9 +261,9 @@ function Header() {
           {navItems.map((item, index) => {
             return (
               <Link
-                className={`text-decoration-none my-2 mx-2 px-4`}
+                className={`text-decoration-none my-3 mx-2 px-4`}
                 key={`nav-item-${index}`}
-                href={`#${item.path}`}
+                href={`${item.path}`}
                 onClick={() => {
                   setIsDrawerOpen(false);
                 }}
@@ -289,6 +276,7 @@ function Header() {
                       : "text-light tab-hover"
                   }`}
                 >
+                  <i className={`me-2 bi bi-${item.icon}`}></i>
                   {item.title}
                 </span>
               </Link>

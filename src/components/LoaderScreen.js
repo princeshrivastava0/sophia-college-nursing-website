@@ -57,7 +57,7 @@ function LoaderScreen() {
         className="position-fixed w-100 d-flex justify-content-center align-items-center bg-white pb-5 pb-md-0"
         style={{
           height: "100vh",
-          zIndex: "9999",
+          zIndex: "99999",
           opacity: "0.8",
         }}
       >

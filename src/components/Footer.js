@@ -1,39 +1,26 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { use } from "react";
 
 function Footer() {
-  const router = useRouter();
-  const { basePath } = router;
-
   const quickLinks = [
     {
       title: "Home",
-      path: "#",
-    },
-    {
-      title: "Chairperson's Desk",
-      path: "#",
-    },
-    {
-      title: "Staff",
-      path: "#",
+      path: "/",
     },
     {
       title: "Courses",
-      path: "#",
-    },
-    {
-      title: "Admission",
-      path: "#",
+      path: "/courses",
     },
     {
       title: "Gallery",
-      path: "#",
+      path: "/gallery",
+    },
+    {
+      title: "Staff",
+      path: "/staff",
     },
     {
       title: "Get in touch",
-      path: "#",
+      path: "/contact",
     },
   ];
 

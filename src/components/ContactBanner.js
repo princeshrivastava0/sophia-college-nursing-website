@@ -12,7 +12,7 @@ function ContactBanner() {
     <>
       <style jsx>{`
         .contact_banner {
-          height: 25px;
+          height: 30px;
           background-color: #e74c3c;
           color: #fff;
           overflow: hidden;
