@@ -1,38 +1,14 @@
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import ScrollIndicator from "./ScrollIndicator";
-import ContactBanner from "./ContactBanner";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import ScrollIndicator from "./ScrollIndicator";
+import ContactBanner from "./ContactBanner";
 
-function Header({ portfolioBtn, activeSection }) {
-  const [isActiveTab, setIsActiveTab] = useState("Home");
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const isTabClicked = useRef(false);
+function Header() {
   const router = useRouter();
-  const { basePath } = useRouter();
-
-  // Setting ActiveTab on Scroll
-  // useEffect(() => {
-  //   const handleActiveScroll = () => {
-  //     if (!isTabClicked.current && !portfolioBtn.current) {
-  //       // Only update on scroll if no recent tab click
-  //       setIsActiveTab(() => {
-  //         return `${activeSection
-  //           .slice(0, 1)
-  //           .toUpperCase()}${activeSection.slice(1)}`;
-  //       });
-  //     }
-
-  //     if (portfolioBtn.current) {
-  //       setIsActiveTab("Portfolio");
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleActiveScroll);
-
-  //   return () => window.removeEventListener("scroll", handleActiveScroll);
-  // }, [activeSection]);
+  const { basePath } = router;
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Preventing page-scroll when drawer is open
   useEffect(() => {
@@ -67,26 +43,21 @@ function Header({ portfolioBtn, activeSection }) {
       title: "Home",
       path: "/",
     },
-
-    {
-      title: "Staff",
-      path: "",
-    },
     {
       title: "Courses",
-      path: "",
-    },
-    {
-      title: "Admission",
-      path: "",
+      path: "/courses",
     },
     {
       title: "Gallery",
       path: "/gallery",
     },
     {
+      title: "Staff",
+      path: "/staff",
+    },
+    {
       title: "Contact Us",
-      path: "",
+      path: "/contact",
     },
   ];
 
@@ -98,14 +69,14 @@ function Header({ portfolioBtn, activeSection }) {
           position: relative;
         }
 
-        .tab-hover {
-          position: relative;
-        }
-
         .active-tab:before,
         .active-tab:after {
           width: 50% !important;
           border-bottom: 2px solid #e74c3c !important;
+        }
+
+        .tab-hover {
+          position: relative;
         }
 
         .tab-hover:before,
@@ -137,29 +108,18 @@ function Header({ portfolioBtn, activeSection }) {
           border-bottom: 2px solid #444444;
         }
 
-        .text-hover:hover {
-          color: #e74c3c !important;
-          transition: color 0.2s ease-in-out;
+        .drawer-overlay {
+          transition: opacity 0.3s ease-in-out;
         }
-
-        .header-container {
-          max-width: 2000px !important;
+        .drawer-overlay.open {
+          z-index: 100;
+          opacity: 1;
+          pointer-events: auto;
         }
-
-        @media screen and (max-width: 344px) {
-          .logo-text {
-            display: none !important;
-          }
-        }
-
-        @media screen and (max-width: 1100px) {
-          .logo-symbol {
-            margin-top: 0 !important;
-          }
-
-          .logo-text {
-            font-size: clamp(0.8rem, 2.5vw, 0.95rem) !important;
-          }
+        .drawer-overlay.closed {
+          z-index: 99;
+          opacity: 0;
+          pointer-events: none;
         }
       `}</style>
 
@@ -167,24 +127,26 @@ function Header({ portfolioBtn, activeSection }) {
       <ContactBanner />
 
       <header
-        className="d-flex justify-content-center mx-auto py-1 px-3 position-fixed"
+        className="position-fixed w-100"
         style={{
-          width: "100%",
+          top: "25px",
           height: "70px",
           left: "50%",
           transform: "translateX(-50%)",
           backgroundColor: "#fff",
           boxShadow: "0 0 10px 3px #FF6B6B",
-          zIndex: "3",
-          top: "20px",
+          zIndex: "99",
         }}
       >
-        <div className="d-flex justify-content-between align-items-center w-100 header-container">
+        <div
+          className="d-flex justify-content-between align-items-center w-100 px-4 me-1"
+          style={{
+            height: "100%",
+            maxWidth: "2000px",
+          }}
+        >
           {/* Logo */}
-          <Link
-            className="d-flex align-items-center text-decoration-none px-4"
-            href={"/"}
-          >
+          <Link className="text-decoration-none mx-4" href={"/"}>
             <Image
               src={`${basePath}/favicon.png`}
               alt="logo"
@@ -209,12 +171,10 @@ function Header({ portfolioBtn, activeSection }) {
               <span
                 style={{
                   display: "inline-block",
-                  transition: "transform 0.3s ease",
-                  transform: isDrawerOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               >
                 <i
-                  className={`bi bi-${isDrawerOpen ? "x" : "list"}`}
+                  className={`bi bi-list`}
                   style={{ fontSize: "2rem", color: "#444444" }}
                 ></i>
               </span>
@@ -227,17 +187,12 @@ function Header({ portfolioBtn, activeSection }) {
                     className={`text-decoration-none mx-4`}
                     key={`nav-item-${index}`}
                     href={`${item.path}`}
-                    onClick={() => {
-                      setIsActiveTab(item.title);
-                      isTabClicked.current = true;
-                      setTimeout(() => {
-                        isTabClicked.current = false; // Re-enable scroll updates after 1s
-                      }, 1000);
-                    }}
                   >
                     <span
                       className={`fw-bold ${
-                        isActiveTab === item.title ? "active-tab" : "tab-hover"
+                        router.pathname === item.path
+                          ? "active-tab"
+                          : "tab-hover"
                       }`}
                       style={{ color: "#444444" }}
                     >
@@ -255,22 +210,67 @@ function Header({ portfolioBtn, activeSection }) {
 
       {/* Mobile Menu */}
       <div
-        className=" d-flex d-md-none position-fixed w-100 drawer-container"
+        className={`d-flex d-md-none position-fixed w-100 drawer-overlay ${
+          isDrawerOpen ? "open" : "closed"
+        }`}
         style={{
           height: "100vh",
-          zIndex: "2",
-          transform: isDrawerOpen ? "translateX(0%)" : "translateX(-100%)",
-          transition: "transform 0.3s ease-in-out",
+          top: 0,
+          left: 0,
+          background: "rgba(0, 0, 0, 0.5)",
         }}
       >
         <nav
-          className="d-flex flex-column justify-content-center align-items-left shadow"
+          className="d-flex flex-column align-items-left shadow py-5 px-3"
           style={{
-            maxWidth: "200px",
-            width: "50%",
+            maxWidth: "250px",
+            width: "75%",
             backgroundColor: "#444444",
+            transition: "transform 0.3s ease-in-out",
+            transform: isDrawerOpen ? "translateX(0%)" : "translateX(-100%)",
           }}
         >
+          {/* Close Btn */}
+          <button
+            className="d-md-none position-absolute m-3"
+            style={{
+              backgroundColor: "transparent",
+              outline: "none",
+              border: "none",
+              right: 0,
+              top: 0,
+              width: "3rem",
+              height: "3rem",
+            }}
+            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          >
+            <span
+              style={{
+                display: "inline-block",
+              }}
+            >
+              <i
+                className={`bi bi-x-octagon`}
+                style={{ fontSize: "2rem", color: "#ffffffff" }}
+              ></i>
+            </span>
+          </button>
+
+          {/* Logo */}
+          <span
+            className="text-center my-5 mb-3 pb-4"
+            style={{ width: "100%", borderBottom: "1px solid rgba(0,0,0,0.5)" }}
+          >
+            <Image
+              src={`${basePath}/favicon.png`}
+              alt="logo"
+              width={150}
+              height={150}
+              priority
+            />
+          </span>
+
+          {/* NavItems */}
           {navItems.map((item, index) => {
             return (
               <Link
@@ -279,13 +279,12 @@ function Header({ portfolioBtn, activeSection }) {
                 href={`#${item.path}`}
                 onClick={() => {
                   setIsDrawerOpen(false);
-                  setIsActiveTab(item.title);
                 }}
               >
                 <span
                   style={{ fontSize: "1.25rem" }}
                   className={`fw-bold ${
-                    isActiveTab === item.title
+                    router.pathname === item.path
                       ? "active-tab"
                       : "text-light tab-hover"
                   }`}

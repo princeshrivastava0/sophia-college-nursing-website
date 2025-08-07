@@ -15,12 +15,19 @@ function ContactBanner() {
           height: 25px;
           background-color: #e74c3c;
           color: #fff;
-          z-index: 999;
           overflow: hidden;
+          z-index: 99;
         }
       `}</style>
-      <div className="contact_banner position-fixed w-100 d-flex align-items-center justify-content-center justify-content-md-end px-3">
-        <div className="d-flex align-items-center px-3 mx-2">
+      <div
+        className="contact_banner w-100 position-fixed d-flex align-items-center justify-content-center justify-content-md-end"
+        style={{
+          top: "0px",
+          right: "0px",
+          left: "0px",
+        }}
+      >
+        <div className="d-flex align-items-center mx-5">
           {ContactDetails.map((details, index) => {
             return (
               <span

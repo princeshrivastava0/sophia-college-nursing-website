@@ -13,6 +13,9 @@ function ScrollIndicator() {
       setScrollWidth(scrolled);
     };
 
+    // Initial call to set scroll width on load
+    handleScroll();
+
     // Attach event listener
     window.addEventListener("scroll", handleScroll);
 
@@ -24,12 +27,12 @@ function ScrollIndicator() {
 
   return (
     <div
-      className="position-fixed w-100 d-none d-md-block"
+      className="position-fixed w-100 d-none d-lg-block"
       style={{
         bottom: "0px",
         left: 0,
         height: "3px",
-        zIndex: 99,
+        zIndex: 100,
       }}
     >
       <div

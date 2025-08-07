@@ -239,6 +239,7 @@ function EventHighlights() {
                         : photo.src
                     }
                     alt={photo.alt || "No Photo Available"}
+                    sizes="100%"
                     fill
                     style={{
                       objectFit: "cover",
@@ -285,9 +286,15 @@ function EventHighlights() {
           {isLoading && (
             <div
               className="position-absolute my-auto img-preview-container d-flex justify-content-center align-items-center"
-              style={{ height: "80%", maxWidth: "50%", zIndex: 9999 }}
+              style={{
+                zIndex: 9999,
+              }}
             >
-              <div className="spinner-border text-danger" role="status">
+              <div
+                className="spinner-border text-danger"
+                role="status"
+                style={{ height: "50px", width: "50px", fontSize: "1.25rem" }}
+              >
                 <span className="visually-hidden">Loading...</span>
               </div>
             </div>

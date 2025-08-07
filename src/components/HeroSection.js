@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-
 function HeroSection() {
   const router = useRouter();
   const { basePath } = router;
@@ -69,6 +68,7 @@ function HeroSection() {
                   src={item.src}
                   alt={item.alt}
                   fill
+                  sizes="100%"
                   style={{ objectFit: "cover" }} // Ensures the image covers the area
                 />
                 <div className="carousel-caption d-none d-md-block">

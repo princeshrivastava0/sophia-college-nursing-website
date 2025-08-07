@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import EventHighlights from "@/components/EventHighlights";
 import ChairpersonsDesk from "@/components/ChairpersonsDesk";
 import VisionMission from "@/components/VisionMission";
+import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
   // Using useRouter to get the base path for images
@@ -34,7 +35,7 @@ export default function Home() {
         <ChairpersonsDesk />
       </div>
 
-      <div style={{ height: "100vh" }}></div>
+      {/* <div style={{ height: "100vh" }}></div> */}
 
       {/* Event Highlights */}
       <EventHighlights />

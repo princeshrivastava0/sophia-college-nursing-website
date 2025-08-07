@@ -1,5 +1,7 @@
+import PhotoGallery from "@/components/Photo-gallery";
+
 function gallery() {
-  return <section id="gallery"></section>;
+  return <PhotoGallery />;
 }
 
 export default gallery;

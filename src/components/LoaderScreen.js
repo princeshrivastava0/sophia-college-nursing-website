@@ -57,7 +57,7 @@ function LoaderScreen() {
         className="position-fixed w-100 d-flex justify-content-center align-items-center bg-white pb-5 pb-md-0"
         style={{
           height: "100vh",
-          zIndex: "100",
+          zIndex: "9999",
           opacity: "0.8",
         }}
       >
@@ -70,31 +70,8 @@ function LoaderScreen() {
             alt="logo"
             priority
           />
-          <span
-            className="loader position-absolute"
-            style={{ zIndex: 99 }}
-          ></span>
+          <span className="loader position-absolute"></span>
         </div>
-
-        {/* <div
-          className="mobile-text d-flex align-items-center"
-          style={{ marginBottom: "100px" }}
-        >
-          <span
-            className="fw-bold px-2 logo-text text-hover"
-            style={{
-              fontSize: "2.5rem",
-              letterSpacing: "3px",
-              color: "#444444",
-              textAlign: "center",
-              fontFamily: `"Poppins", sans-serif`,
-              textTransform: "uppercase",
-              textShadow: "-0px -5px 5px rgba(0, 0, 0, 0.5)",
-            }}
-          >
-            Sophia Nursing College
-          </span>
-        </div> */}
       </div>
     </>
   );

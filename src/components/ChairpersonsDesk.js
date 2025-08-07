@@ -59,6 +59,7 @@ function ChairpersonsDesk() {
                 src={`${basePath}/chairperson-img.jpeg`}
                 alt="chairperson"
                 fill
+                sizes="100%"
                 style={{ objectFit: "cover" }}
               />
             </div>
