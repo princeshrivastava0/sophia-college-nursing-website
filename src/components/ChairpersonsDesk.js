@@ -139,7 +139,7 @@ function ChairpersonsDesk() {
               }}
               onClick={() => setIsExpanded(!isExpandded)}
             >
-              {isExpandded ? "Read less" : "Read more"}
+              {isExpandded ? "Read less" : "Read More"}
             </button>
           </div>
 
