@@ -35,16 +35,16 @@ function PhotoGallery() {
           border-radius: 6px;
           bottom: 0rem !important;
         }
+
+        .carousel-container-height {
+          height: 500px;
+          overflow: hidden;
+        }
       `}</style>
+
       <section id="photo-gallery" style={{ paddingTop: "100px" }}>
         {/* Carousel Container */}
-        <div
-          className="w-100 my-5 p-5 d-flex justify-content-center align-items-center position-relative"
-          style={{
-            height: "500px",
-            overflow: "hidden",
-          }}
-        >
+        <div className="w-100 my-md-5 mt-3 p-md-5 d-flex justify-content-center align-items-center position-relative carousel-container-height">
           <div
             id="galleryCarousel"
             className="carousel carousel-dark slide"
@@ -56,7 +56,9 @@ function PhotoGallery() {
               {allPhotos.map((photo, index) => (
                 <div
                   key={index}
-                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                  className={`carousel-item carousel-container-height ${
+                    index === 0 ? "active" : ""
+                  }`}
                   style={{ height: "500px" }}
                 >
                   <Image
@@ -64,10 +66,10 @@ function PhotoGallery() {
                     alt={photo.alt}
                     fill
                     sizes="100vw"
-                    style={{ objectFit: "contain" }}
                     className="d-block w-100"
+                    style={{ objectFit: "contain" }}
                   />
-                  <div className="carousel-caption d-none d-md-block">
+                  <div className="carousel-caption d-block">
                     <h5
                       className="my-2"
                       style={{
