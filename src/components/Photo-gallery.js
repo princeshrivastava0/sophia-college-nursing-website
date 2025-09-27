@@ -1,12 +1,33 @@
 import { galleryPhotos } from "@/data/galleryPhotos";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ImagePreview from "./ImagePreview";
 
 function PhotoGallery() {
   const router = useRouter();
   const { basePath } = router;
   const [activePhoto, setActivePhoto] = useState(null);
+  const [imgPreview, setImgPreview] = useState({
+    currentIndex: null,
+    photoSrc: null,
+    photoAlt: null,
+    isVisible: false,
+  });
+
+  // Disabling Page-Scroll on Image Preview
+  useEffect(() => {
+    if (imgPreview.isVisible) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+    }
+
+    // Cleanup to reset on unmount
+    return () => {
+      document.documentElement.style.overflow = "auto";
+    };
+  }, [imgPreview.isVisible]);
 
   // Storing all photos into a new array along with their headings
   const allPhotos = galleryPhotos
@@ -17,6 +38,14 @@ function PhotoGallery() {
       }))
     )
     .reverse();
+
+  // Event Photos Handler Function - to set Image Visible State and trigger Image Preview
+  function handleImagePreview(index) {
+    setImgPreview({
+      isVisible: true,
+      currentIndex: index,
+    });
+  }
 
   return (
     <>
@@ -155,6 +184,14 @@ function PhotoGallery() {
                             }}
                             onMouseEnter={() => setActivePhoto(key)}
                             onMouseLeave={() => setActivePhoto(null)}
+                            onClick={() =>
+                              handleImagePreview(
+                                allPhotos.findIndex(
+                                  (p) =>
+                                    p.src === photo.src && p.alt === photo.alt
+                                )
+                              )
+                            }
                           >
                             <Image
                               src={`${basePath}${photo.src}`}
@@ -175,6 +212,13 @@ function PhotoGallery() {
             })}
         </div>
       </section>
+      {imgPreview.isVisible && (
+        <ImagePreview
+          photos={allPhotos}
+          imgPreview={imgPreview}
+          setImgPreview={setImgPreview}
+        />
+      )}
     </>
   );
 }

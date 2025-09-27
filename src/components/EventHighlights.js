@@ -347,7 +347,7 @@ function EventHighlights() {
                 height: "100%",
                 objectFit: "contain",
               }}
-              sizes="(max-width: 767px), 95vw, (max-width: 1200px), 80vw"
+              sizes="(max-width: 767px) 95vw, (max-width: 1200px) 80vw, 100vw"
               className="img-fluid rounded"
               onLoad={() => {
                 if (spinnerTimeoutRef.current) {
