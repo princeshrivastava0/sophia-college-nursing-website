@@ -11,8 +11,12 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
     height: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [imgCaption, setImgCaption] = useState("");
+  const [hasError, setHasError] = useState(false); //Need to review this logic
 
   useEffect(() => {
+    setIsLoading(true);
+    setImgCaption(""); // reset previous caption/error
     const imgEl = new window.Image();
     imgEl.src = `${basePath}${photos[imgPreview.currentIndex].src}`;
     imgEl.onload = () => {
@@ -20,7 +24,12 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
         width: imgEl.width,
         height: imgEl.height,
       });
+    };
+
+    imgEl.onError = () => {
       setIsLoading(false);
+      setImgCaption("Failed to load image");
+      setHasError(true); //Need to review this logic
     };
   }, [imgPreview.currentIndex]);
 
@@ -58,7 +67,7 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
           background: transparent;
           outline: none;
           border: none;
-          font-size: 2rem;
+          font-size: 2.2rem;
         }
 
         .close-btn:hover {
@@ -78,21 +87,16 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
         }
 
         .img-container {
-          max-width: 100%;
-          // height: auto !important;
+          max-height: 75%;
+          height: 75%;
+          max-width: 95%;
+          width: auto;
         }
 
         @media screen and (max-width: 767px) {
           .img-container {
             width: 95% !important;
             height: auto !important;
-          }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 991px) {
-          .img-container {
-            height: 75% !important;
-            width: auto !important;
           }
         }
       `}</style>
@@ -116,36 +120,12 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
         }}
       >
         {/* Image Container */}
-        <div
-          className="position-relative img-container"
-          style={{
-            height: "75%",
-          }}
-        >
-          {/* Close Btn */}
-          {!isLoading && (
-            <span
-              className="d-inline-block position-absolute"
-              style={{ right: 10, top: 0, zIndex: 99 }}
-            >
-              <button
-                className="close-btn"
-                onClick={() =>
-                  setImgPreview({
-                    ...imgPreview,
-                    isVisible: false,
-                  })
-                }
-              >
-                <i className="bi bi-x-octagon-fill"></i>
-              </button>
-            </span>
-          )}
-          {isLoading ? (
+        <div className="position-relative img-container d-flex justify-content-center align-items-center ">
+          {isLoading && (
             <div
-              className="h-100 my-auto img-preview-container d-flex justify-content-center align-items-center"
+              className="my-auto d-flex justify-content-center align-items-center position-absolute"
               style={{
-                zIndex: 99,
+                zIndex: 9999,
               }}
             >
               <div
@@ -156,75 +136,98 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
                 <span className="visually-hidden">Loading...</span>
               </div>
             </div>
-          ) : (
-            <Image
-              src={`${basePath}${photos[imgPreview.currentIndex].src}`}
-              alt={`${photos[imgPreview.currentIndex].alt}`}
-              width={imgSize.width}
-              height={imgSize.height}
-              style={{
-                height: "100%",
-                width: "100%",
-                objectFit: "contain",
-              }}
-              sizes="(max-width: 767px) 95vw, (max-width: 1200px) 75vw, 75vw"
-              className="img-fluid rounded"
-            />
           )}
+          <Image
+            src={
+              hasError
+                ? `${basePath}/public/no-photo.jpg`
+                : `${basePath}${photos[imgPreview.currentIndex].src}`
+            }
+            alt={`${photos[imgPreview.currentIndex].alt}`}
+            width={imgSize.width}
+            height={imgSize.height}
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "contain",
+            }}
+            sizes="(max-width: 767px) 95vw, (max-width: 1200px) 75vw, 75vw"
+            className="img-fluid rounded"
+            onLoad={() => {
+              setIsLoading(false);
+              setImgCaption(photos[imgPreview.currentIndex].eventHeading);
+            }}
+          />
 
           {/* Image Caption */}
-          {!isLoading && (
-            <h5 className="img-caption m-0 d-none d-lg-block">{`${
-              photos[imgPreview.currentIndex].eventHeading
-            }`}</h5>
+
+          {imgCaption && (
+            <h5 className="img-caption m-0 d-none d-lg-block">{imgCaption}</h5>
           )}
         </div>
 
         {/* Image Controls */}
-        {!isLoading && (
-          <div
-            className=" mx-auto d-flex justify-content-center align-items-center"
-            style={{ height: "50px" }}
+        <div
+          className="mx-auto d-flex justify-content-center align-items-center rounded-4 my-2"
+          style={{
+            height: "50px",
+            backgroundColor: "rgba(255,255,255,0.5)",
+            border: "none",
+            outline: "none",
+          }}
+        >
+          {/* Previous Btn */}
+          <button
+            type="button"
+            style={{
+              background: "rgba(0,0,0,0.9)",
+              outline: "none",
+              border: "none",
+              width: "100px",
+              borderRadius: "5px",
+            }}
+            className="py-1 img-cntrl-btn mx-3"
+            onClick={() => handleImgControl("prev")}
           >
-            {/* Previous Btn */}
-            <button
-              type="button"
-              style={{
-                background: "rgba(0,0,0,0.9)",
-                outline: "none",
-                border: "none",
-                width: "100px",
-                borderRadius: "5px",
-              }}
-              className="py-1 img-cntrl-btn mx-3"
-              onClick={() => handleImgControl("prev")}
-            >
-              <i
-                className="bi bi-skip-backward-fill fw-bold"
-                style={{ color: "#fff", fontSize: "1.25rem" }}
-              ></i>
-            </button>
+            <i
+              className="bi bi-skip-backward-fill fw-bold"
+              style={{ color: "#fff", fontSize: "1.25rem" }}
+            ></i>
+          </button>
 
-            {/* Next Btn */}
-            <button
-              type="button"
-              style={{
-                background: "rgba(0,0,0,0.9)",
-                outline: "none",
-                border: "none",
-                width: "100px",
-                borderRadius: "5px",
-              }}
-              className="py-1 img-cntrl-btn mx-3"
-              onClick={() => handleImgControl("next")}
-            >
-              <i
-                className="bi bi-skip-forward-fill"
-                style={{ color: "#fff", fontSize: "1.25rem" }}
-              ></i>
-            </button>
-          </div>
-        )}
+          {/* Close Btn */}
+          <button
+            type="button"
+            className="close-btn py-1 mx-3"
+            onClick={() =>
+              setImgPreview({
+                ...imgPreview,
+                isVisible: false,
+              })
+            }
+          >
+            <i className="bi bi-x-octagon-fill"></i>
+          </button>
+
+          {/* Next Btn */}
+          <button
+            type="button"
+            style={{
+              background: "rgba(0,0,0,0.9)",
+              outline: "none",
+              border: "none",
+              width: "100px",
+              borderRadius: "5px",
+            }}
+            className="py-1 img-cntrl-btn mx-3"
+            onClick={() => handleImgControl("next")}
+          >
+            <i
+              className="bi bi-skip-forward-fill"
+              style={{ color: "#fff", fontSize: "1.25rem" }}
+            ></i>
+          </button>
+        </div>
       </div>
     </>
   );

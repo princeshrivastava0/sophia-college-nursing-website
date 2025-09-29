@@ -272,10 +272,10 @@ function EventHighlights() {
         </div>
       </section>
 
-      {/* Image Preview Feature */}
+      {/* Image Preview Feature Wrapper*/}
       {activeImage.visible && (
         <div
-          className="img-preview-wrapper position-fixed d-flex justify-content-center align-items-center"
+          className="position-fixed d-flex justify-content-center align-items-center"
           style={{
             height: "100vh",
             width: "100vw",
