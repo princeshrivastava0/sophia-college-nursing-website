@@ -15,6 +15,12 @@ function PhotoGallery() {
     isVisible: false,
   });
 
+  const [errorPhotos, setErrorPhotos] = useState({});
+
+  function handleImageError(src) {
+    setErrorPhotos((prev) => ({ ...prev, [src]: true }));
+  }
+
   // Disabling Page-Scroll on Image Preview
   useEffect(() => {
     if (imgPreview.isVisible) {
@@ -82,36 +88,38 @@ function PhotoGallery() {
           >
             {/* Slides */}
             <div className="carousel-inner">
-              {allPhotos.map((photo, index) => (
-                <div
-                  key={index}
-                  className={`carousel-item carousel-container-height ${
-                    index === 0 ? "active" : ""
-                  }`}
-                  style={{ height: "500px" }}
-                >
-                  <Image
-                    src={`${basePath}${photo.src}`}
-                    alt={photo.alt}
-                    fill
-                    sizes="100vw"
-                    className="d-block w-100"
-                    style={{ objectFit: "contain" }}
-                  />
-                  <div className="carousel-caption d-block">
-                    <h5
-                      className="my-2"
-                      style={{
-                        color: "#fff",
-                        fontWeight: "700",
-                        wordBreak: "break-word",
-                      }}
-                    >
-                      {photo.eventHeading}
-                    </h5>
+              {allPhotos
+                .filter((photo) => !errorPhotos[photo.src]) //to skip brokenimages
+                .map((photo, index) => (
+                  <div
+                    key={index}
+                    className={`carousel-item carousel-container-height ${
+                      index === 0 ? "active" : ""
+                    }`}
+                    style={{ height: "500px" }}
+                  >
+                    <Image
+                      src={`${basePath}${photo.src}`}
+                      alt={photo.alt}
+                      fill
+                      sizes="100vw"
+                      className="d-block w-100"
+                      style={{ objectFit: "contain" }}
+                    />
+                    <div className="carousel-caption d-block">
+                      <h5
+                        className="my-2"
+                        style={{
+                          color: "#fff",
+                          fontWeight: "700",
+                          wordBreak: "break-word",
+                        }}
+                      >
+                        {photo.eventHeading}
+                      </h5>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
 
             {/* Controls */}
@@ -175,33 +183,46 @@ function PhotoGallery() {
                           <span
                             key={key}
                             className={`position-relative d-flex m-3 photo ${
-                              activePhoto === key ? "active-photo" : ""
+                              activePhoto === key && !errorPhotos[photo.src]
+                                ? "active-photo"
+                                : ""
                             }`}
                             style={{
                               width: "200px",
                               height: "200px",
-                              cursor: "pointer",
+                              cursor: errorPhotos[photo.src]
+                                ? "default"
+                                : "pointer",
                             }}
                             onMouseEnter={() => setActivePhoto(key)}
                             onMouseLeave={() => setActivePhoto(null)}
-                            onClick={() =>
-                              handleImagePreview(
-                                allPhotos.findIndex(
-                                  (p) =>
-                                    p.src === photo.src && p.alt === photo.alt
-                                )
-                              )
+                            onClick={
+                              errorPhotos[photo.src]
+                                ? undefined // disable click
+                                : () =>
+                                    handleImagePreview(
+                                      allPhotos.findIndex(
+                                        (p) =>
+                                          p.src === photo.src &&
+                                          p.alt === photo.alt
+                                      )
+                                    )
                             }
                           >
                             <Image
-                              src={`${basePath}${photo.src}`}
+                              src={
+                                errorPhotos[photo.src]
+                                  ? `${basePath}/no-photo.jpg`
+                                  : `${basePath}${photo.src}`
+                              }
                               alt={`${photo.alt}`}
                               fill
-                              sizes="100%"
+                              sizes="200px"
                               style={{
                                 objectFit: "cover",
                                 borderRadius: "5px",
                               }}
+                              onError={() => handleImageError(photo.src)}
                             />
                           </span>
                         );
