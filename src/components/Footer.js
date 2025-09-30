@@ -164,7 +164,7 @@ function Footer() {
                   fontWeight: "600",
                 }}
               >
-                Madhav Rao Sindhia Road, Opp. R I Training Center,
+                Madhav Rao Scindia Road, Opp. R I Training Center,
                 Mahalgoan,City Center, Gwalior (M.P.), PIN-474002
               </span>
             </span>
@@ -249,7 +249,7 @@ function Footer() {
                 className="text-decoration-none text-white"
                 style={{ fontWeight: "600", letterSpacing: "1px" }}
               >
-                www.sophiainstitutes.com/nursing
+                www.sophiainstitutes.com
               </a>
             </span>
           </div>
