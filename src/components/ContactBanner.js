@@ -18,6 +18,12 @@ function ContactBanner() {
           overflow: hidden;
           z-index: 99;
         }
+
+        @media screen and (max-width: 350px) {
+          .banner-item-margin {
+            margin: 0 2rem !important;
+          }
+        }
       `}</style>
       <div
         className="contact_banner w-100 position-fixed d-flex align-items-center justify-content-center justify-content-md-end"
@@ -27,7 +33,7 @@ function ContactBanner() {
           left: "0px",
         }}
       >
-        <div className="d-flex align-items-center mx-5">
+        <div className="d-flex align-items-center mx-5 banner-item-margin">
           {ContactDetails.map((details, index) => {
             return (
               <span

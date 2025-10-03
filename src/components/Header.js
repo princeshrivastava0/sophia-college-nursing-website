@@ -57,12 +57,12 @@ function Header() {
     {
       title: "Staff",
       path: "/staff",
-      icon: "people-fill",
+      icon: "people",
     },
     {
       title: "Contact Us",
       path: "/contact",
-      icon: "telephone-inbound-fill",
+      icon: "telephone",
     },
   ];
 
@@ -125,6 +125,12 @@ function Header() {
           z-index: 99;
           opacity: 0;
           pointer-events: none;
+        }
+
+        @media screen and (max-width: 350px) {
+          .drawer-tab {
+            font-size: 1rem !important;
+          }
         }
       `}</style>
 
@@ -274,7 +280,7 @@ function Header() {
                     router.pathname === item.path
                       ? "active-tab"
                       : "text-light tab-hover"
-                  }`}
+                  } drawer-tab`}
                 >
                   <i className={`me-2 bi bi-${item.icon}`}></i>
                   {item.title}

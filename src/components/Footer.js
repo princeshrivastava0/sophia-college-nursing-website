@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useState } from "react";
 
 function Footer() {
+  const [hoverLink, setHoverLink] = useState(null);
   const quickLinks = [
     {
       title: "Home",
@@ -35,6 +37,10 @@ function Footer() {
           text-align: justify;
         }
 
+        .quick-links {
+          color: #e74c3c !important;
+        }
+
         @media screen and (max-width: 767px) {
           .footer-row-1-items {
             width: 100% !important;
@@ -51,7 +57,7 @@ function Footer() {
           }
         }
 
-        @media screen and (min-width: 768px) and (max-width: 1280px) {
+        @media screen and (min-width: 767px) and (max-width: 1280px) {
           .contact-text-align {
             text-align: left !important;
           }
@@ -82,14 +88,14 @@ function Footer() {
         style={{ backgroundColor: "#000000" }}
       >
         <div
-          className="d-flex flex-column flex-md-row flex-wrap justify-content-evenly align-items-center align-items-md-start py-5 pb-3 pb-md-5"
+          className="d-flex  flex-row flex-wrap justify-content-evenly align-items-center align-items-md-start py-4 mt-1 py-md-5"
           style={{
             color: "#fff",
             width: "80%",
           }}
         >
           {/* Quick Links Container */}
-          <div className="footer-row-1-items d-flex flex-column align-items-start py-3 py-md-0">
+          <div className="footer-row-1-items d-flex flex-column align-items-start pb-3 pb-md-0">
             <h6
               className="mb-4 mb-md-3"
               style={{
@@ -106,14 +112,20 @@ function Footer() {
                 <span
                   key={`link-${index}`}
                   className="d-inline-block m-0 ms-md-1 mb-2"
+                  style={{ cursor: "pointer" }}
                 >
                   <Link
                     href={link.path}
-                    className="text-decoration-none text-white"
+                    className="text-decoration-none quick-links"
                     style={{
                       fontSize: "0.9rem",
                       fontWeight: "600",
                       letterSpacing: "1px",
+                      color: hoverLink === link.path ? "#e74c3c" : "#fff",
+                    }}
+                    onMouseEnter={() => setHoverLink(link.path)}
+                    onMouseLeave={() => {
+                      setHoverLink(null);
                     }}
                   >
                     {link.title}
@@ -171,7 +183,7 @@ function Footer() {
 
             {/* Contact Number */}
             <span
-              className="d-inline-block mb-3 contact-text-align"
+              className="d-flex mb-3 contact-text-align"
               style={{
                 fontSize: "0.9rem",
                 fontWeight: "600",
@@ -184,21 +196,23 @@ function Footer() {
                   style={{ fontSize: "1rem", color: "#e74c3c" }}
                 ></i>
               </span>
-              <a
-                href="tel:+917512230522"
-                className="text-decoration-none text-white"
-                style={{ fontWeight: "600", letterSpacing: "1px" }}
-              >
-                0751-2230522
-              </a>
-              &nbsp;,&nbsp;
-              <a
-                href="tel:+919522288213"
-                className="text-decoration-none text-white"
-                style={{ fontWeight: "600", letterSpacing: "2px" }}
-              >
-                +91-9522288213
-              </a>
+              <span className="d-flex flex-wrap">
+                <a
+                  href="tel:+917512230522"
+                  className="text-decoration-none text-white"
+                  style={{ fontWeight: "600", letterSpacing: "1px" }}
+                >
+                  0751-2230522
+                </a>
+                &nbsp;,&nbsp;
+                <a
+                  href="tel:+919522288213"
+                  className="text-decoration-none text-white"
+                  style={{ fontWeight: "600", letterSpacing: "2px" }}
+                >
+                  +91-9522288213
+                </a>
+              </span>
             </span>
 
             {/* Contact-Email */}
@@ -228,7 +242,7 @@ function Footer() {
 
             {/* Nursing College Website URL */}
             <span
-              className="d-inline-block"
+              className="d-flex"
               style={{
                 textAlign: "justify",
                 fontSize: "0.9rem",
@@ -256,7 +270,7 @@ function Footer() {
 
           {/* Google Map Container */}
           <div
-            className="footer-row-1-items text-start py-3 py-md-0"
+            className="footer-row-1-items text-start pt-3 py-md-0"
             style={{ border: "none" }}
           >
             <h6
@@ -271,7 +285,7 @@ function Footer() {
               Locate Us
             </h6>
             <iframe
-              className="m-1 mt-2 google-map-width"
+              className="google-map-width pt-1"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1789.928251123118!2d78.18742760102903!3d26.20134587389154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c41080b1bf71%3A0xd043ea0f3ffebe7b!2sSophia%20Nursing%20College!5e0!3m2!1sen!2sin!4v1753351351070!5m2!1sen!2sin"
               height="200px"
               style={{ border: 0, borderRadius: "5px" }}
@@ -306,7 +320,7 @@ function Footer() {
           </h6>
           <a
             href="https://www.princeshrivastava.com"
-            className="text-decoration-none fw-bold my-2 my-md-0"
+            className="text-decoration-none fw-bold my-2 my-md-0 d-flex flex-wrap justify-content-center align-items-center"
             rel="noopener noreferrer"
             style={{
               fontSize: "0.7rem",
@@ -315,7 +329,7 @@ function Footer() {
             }}
             title="www.princeshrivastava.com"
           >
-            Designed & Developed by{" "}
+            Designed & Developed by &nbsp;
             <span
               style={{
                 fontSize: "0.7rem",

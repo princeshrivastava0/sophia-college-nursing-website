@@ -25,6 +25,12 @@ function ContactUs() {
   return (
     <>
       <style jsx>{`
+        @media screen and (max-width: 350px) {
+          .heading {
+            font-size: 2rem !important;
+            width: 90% !important;
+          }
+        }
         .heading {
           text-align: left;
           font-size: 2.5rem;
@@ -101,6 +107,16 @@ function ContactUs() {
             font-size: 0.95rem;
           }
         }
+
+        @media screen and (min-width: 767px) and (max-width: 1300px) {
+          .details-container {
+            width: 90vw;
+          }
+
+          .grid-row-0 {
+            width: 100% !important;
+          }
+        }
       `}</style>
 
       <section
@@ -110,7 +126,7 @@ function ContactUs() {
         }}
       >
         {/* Heading */}
-        <h2 className="fw-bold m-0 pt-md-5 pt-4 pb-3 ps-md-3 mx-auto heading">
+        <h2 className="fw-bold m-0 pt-lg-5 pt-4 pb-3 ps-lg-3 mx-auto heading">
           Get In Touch
         </h2>
 
@@ -168,24 +184,26 @@ function ContactUs() {
                     </a>
                   </span>
                   {/* Email */}
-                  <span>
+                  <span className="d-flex">
                     <i
                       className="bi bi-envelope-fill me-2"
                       style={{ fontSize: "0.9rem", color: "#e74c3c" }}
                     ></i>
 
-                    <a
-                      href={`mailto:${contactInfo.email}?subject=Inquiry&body=Hello, I would like to...`}
-                      aria-label="Send an email to Sophia Nursing College"
-                      className="text-decoration-none text-black mobile-text"
-                      style={{
-                        letterSpacing: "1px",
-                        textAlign: "left",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {contactInfo.email}
-                    </a>
+                    <span>
+                      <a
+                        href={`mailto:${contactInfo.email}?subject=Inquiry&body=Hello, I would like to...`}
+                        aria-label="Send an email to Sophia Nursing College"
+                        className="text-decoration-none text-black mobile-text"
+                        style={{
+                          letterSpacing: "1px",
+                          textAlign: "left",
+                          fontWeight: "500",
+                        }}
+                      >
+                        {contactInfo.email}
+                      </a>
+                    </span>
                   </span>
                 </span>
               </div>
@@ -259,34 +277,36 @@ function ContactUs() {
 
             <span className="px-0 ps-1 px-md-4 mx-md-2 mt-2 d-flex flex-column">
               {/* Phone Number */}
-              <span className="mobile-text">
+              <span className="mobile-text d-flex">
                 <i
                   className="bi bi-phone-fill me-2"
                   style={{ fontSize: "0.9rem", color: "#e74c3c" }}
                 ></i>
-                <a
-                  href="tel:+917512230522"
-                  className="text-decoration-none text-black m-0 mobile-text"
-                  style={{
-                    letterSpacing: "1px",
-                    textAlign: "left",
-                    fontWeight: "500",
-                  }}
-                >
-                  +91-751-2230522
-                </a>
-                &nbsp;,&nbsp;
-                <a
-                  href="tel:+919522288213"
-                  className="text-decoration-none text-black mobile-text"
-                  style={{
-                    letterSpacing: "1px",
-                    textAlign: "left",
-                    fontWeight: "500",
-                  }}
-                >
-                  +91-9522288213
-                </a>
+                <span className="d-flex flex-wrap">
+                  <a
+                    href="tel:+917512230522"
+                    className="text-decoration-none text-black m-0 mobile-text"
+                    style={{
+                      letterSpacing: "1px",
+                      textAlign: "left",
+                      fontWeight: "500",
+                    }}
+                  >
+                    +91-751-2230522
+                  </a>
+                  &nbsp;,&nbsp;
+                  <a
+                    href="tel:+919522288213"
+                    className="text-decoration-none text-black mobile-text"
+                    style={{
+                      letterSpacing: "1px",
+                      textAlign: "left",
+                      fontWeight: "500",
+                    }}
+                  >
+                    +91-9522288213
+                  </a>
+                </span>
               </span>
               {/* Email */}
               <span className="mobile-text">
@@ -313,9 +333,9 @@ function ContactUs() {
         </div>
 
         {/* GoogleMap Container*/}
-        <div className="mx-auto my-md-5 my-4 details-container">
+        <div className="mx-auto my-md-5 my-4 details-container px-3">
           {/* Heading */}
-          <div className="d-flex align-items-center justify-content-center mx-auto">
+          <div className="d-flex align-items-center mx-auto">
             <i
               className="bi bi-geo-alt-fill"
               style={{
