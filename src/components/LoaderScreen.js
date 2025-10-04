@@ -1,29 +1,34 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
 
 function LoaderScreen() {
+  const [visible, setVisible] = useState(false);
   // Preventing page-scroll when the loading screen is active
   useEffect(() => {
     // Hides scrollbar
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    setVisible(true);
     return () => {
       // Restores scrollbar
       document.documentElement.style.overflow = "auto";
       document.body.style.overflow = "auto";
+      setVisible(false);
     };
   }, []);
-
-  const { basePath } = useRouter();
 
   return (
     <>
       <style jsx>{`
+        .loader-container {
+          height: 100vh;
+          z-index: 99999;
+          background-color: rgba(255, 255, 255, 0.5);
+          transition: background-color 0.25s ease;
+        }
+
         .loader {
-          width: 100%;
-          height: 100%;
-          border: 3px solid #fff;
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
           display: inline-block;
           position: relative;
@@ -52,25 +57,39 @@ function LoaderScreen() {
             transform: rotate(360deg);
           }
         }
+
+        .loader-2 {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          box-sizing: border-box;
+          animation: rotation 1.5s linear infinite reverse;
+        }
+        .loader-2::after {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 3px solid;
+          border-color: #000000ff transparent;
+        }
       `}</style>
       <div
-        className="position-fixed w-100 d-flex justify-content-center align-items-center bg-white pb-5 pb-md-0"
-        style={{
-          height: "100vh",
-          zIndex: "99999",
-          opacity: "0.8",
-        }}
+        className={`position-fixed w-100 d-flex justify-content-center align-items-center pb-5 pb-md-0 loader-container ${
+          visible ? "active" : "in-active"
+        }`}
       >
         {/* Spinner & Logo Container */}
         <div className="position-relative d-flex align-items-center justify-content-center mb-5 mb-md-0 p-2">
-          <Image
-            src={`${basePath}/favicon.png`}
-            width={200}
-            height={200}
-            alt="logo"
-            priority
-          />
           <span className="loader position-absolute"></span>
+          <span className="loader-2 position-absolute"></span>
         </div>
       </div>
     </>
