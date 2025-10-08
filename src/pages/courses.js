@@ -1,4 +1,5 @@
 import CustomHead from "@/components/CustomHead";
+import Courses from "@/components/Courses";
 
 function courses() {
   return (
@@ -8,7 +9,7 @@ function courses() {
         description="Explore our comprehensive nursing programs including General Nursing and Midwifery (GNM), B.Sc. Nursing, Post Basic B.Sc. Nursing (P.B.B.Sc), and M.Sc. Nursing—designed to equip future healthcare professionals with excellence."
       />
 
-      <section id="courses" style={{ height: "100vh" }}></section>
+      <Courses />
     </>
   );
 }
