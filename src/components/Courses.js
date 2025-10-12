@@ -90,7 +90,7 @@ function Courses() {
           text-transform: uppercase;
           font-weight: 700;
           letter-spacing: 1px;
-          background-color: #e74c3c;
+          background-color: #2c3e50;
           color: #fff;
           padding: 0.5rem 1rem;
         }
@@ -103,12 +103,14 @@ function Courses() {
           color: #fff;
           letter-spacing: 0.15rem;
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in;
-          font-size: 1.25rem;
+          font-size: 1rem;
           text-transform: uppercase;
+          display: inline-block;
         }
 
         .application-form:hover {
-          box-shadow: 0 0px 24px rgba(255, 0, 0, 1);
+          box-shadow: 0 0px 24px rgba(0, 0, 0, 0.5);
+          transform: scale(1.1);
         }
 
         // for small mobile screens - reduced text size
@@ -145,6 +147,18 @@ function Courses() {
         <h2 className="fw-bold m-0 pt-lg-5 pt-4 pb-3 ps-lg-3 mx-auto heading">
           Courses Offered
         </h2>
+
+        {/* Application Form */}
+        <div className="text-center my-md-5 my-4 px-md-3">
+          <a
+            href={`${basePath}/documents/admission-form.pdf`}
+            className="application-form p-3 px-4 rounded-4 text-decoration-none"
+            rel="noopener noreferrer"
+            title="Download Application Form"
+          >
+            Application Form
+          </a>
+        </div>
 
         {/* Details Container */}
         <div className="details-container mx-auto my-md-5 my-4 px-md-3">
@@ -258,18 +272,6 @@ function Courses() {
               </div>
             );
           })}
-        </div>
-
-        {/* Application Form */}
-        <div className="mb-4 pb-4 text-center">
-          <a
-            href={`${basePath}/documents/admission-form.pdf`}
-            className="application-form p-3 px-5 rounded-4 text-decoration-none"
-            rel="noopener noreferrer"
-            title="Download Application Form"
-          >
-            Application Form
-          </a>
         </div>
       </section>
     </>
