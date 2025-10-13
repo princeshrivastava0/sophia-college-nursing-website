@@ -4,24 +4,28 @@ function ScrollIndicator() {
   const [scrollWidth, setScrollWidth] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollOrResize = () => {
       const winScroll = document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      const height = scrollHeight - clientHeight;
+
+      // Avoid division by zero
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+
       setScrollWidth(scrolled);
     };
 
     // Initial call to set scroll width on load
-    handleScroll();
+    handleScrollOrResize();
 
     // Attach event listener
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScrollOrResize);
+    window.addEventListener("scroll", handleScrollOrResize);
 
     return () => {
-      // Cleanup event listener on unmount
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScrollOrResize);
+      window.removeEventListener("scroll", handleScrollOrResize);
     };
   }, []);
 

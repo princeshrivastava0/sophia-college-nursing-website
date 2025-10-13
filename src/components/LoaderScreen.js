@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react";
-
 function LoaderScreen() {
-  const [visible, setVisible] = useState(false);
-  // Preventing page-scroll when the loading screen is active
-  useEffect(() => {
-    // Hides scrollbar
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-    setVisible(true);
-    return () => {
-      // Restores scrollbar
-      document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
-      setVisible(false);
-    };
-  }, []);
-
   return (
     <>
       <style jsx>{`
         .loader-container {
-          height: 100vh;
+          min-height: 100vh;
+          height: 100dvh;
           z-index: 99999;
           background-color: rgba(255, 255, 255, 0.5);
           transition: background-color 0.25s ease;
@@ -81,13 +65,9 @@ function LoaderScreen() {
           border-color: #000000ff transparent;
         }
       `}</style>
-      <div
-        className={`position-fixed w-100 d-flex justify-content-center align-items-center pb-5 pb-md-0 loader-container ${
-          visible ? "active" : "in-active"
-        }`}
-      >
+      <div className="position-fixed w-100 loader-container d-flex justify-content-center align-items-center">
         {/* Spinner & Logo Container */}
-        <div className="position-relative d-flex align-items-center justify-content-center mb-5 mb-md-0 p-2">
+        <div className="position-relative d-flex align-items-center justify-content-center">
           <span className="loader position-absolute"></span>
           <span className="loader-2 position-absolute"></span>
         </div>

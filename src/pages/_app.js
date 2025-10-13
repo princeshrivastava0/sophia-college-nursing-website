@@ -4,12 +4,12 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LoaderScreen from "@/components/LoaderScreen";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/header-footer/Header";
+import Footer from "@/components/header-footer/Footer";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initial page load
   useEffect(() => {
@@ -20,10 +20,30 @@ export default function App({ Component, pageProps }) {
     return () => clearTimeout(timer);
   }, []);
 
-  // On route change
+  // Disable scroll when loader is active
   useEffect(() => {
-    const handleStart = () => setIsLoading(true);
-    const handleComplete = () => setTimeout(() => setIsLoading(false), 500); // smoother feel
+    const style = isLoading
+      ? { overflow: "hidden", height: "100vh" }
+      : { overflow: "auto", height: "auto" };
+
+    Object.assign(document.documentElement.style, style);
+    Object.assign(document.body.style, style);
+  }, [isLoading]);
+
+  useEffect(() => {
+    const handleStart = () => {
+      setIsLoading(true);
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    };
+
+    const handleComplete = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+        document.documentElement.style.overflow = "auto";
+        document.body.style.overflow = "auto";
+      }, 1000); // smooth fade-out
+    };
 
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);

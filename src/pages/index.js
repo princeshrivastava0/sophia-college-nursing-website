@@ -29,7 +29,6 @@ export default function Home() {
       </div>
 
       {/* Chairperson's Desk */}
-
       <ChairpersonsDesk />
 
       {/* Event Highlights */}

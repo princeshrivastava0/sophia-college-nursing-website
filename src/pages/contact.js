@@ -1,5 +1,5 @@
 import CustomHead from "@/components/CustomHead";
-import ContactUs from "@/components/ContactUs";
+import ContactUs from "@/components/contact/ContactUs";
 
 function contact() {
   return (

@@ -1,5 +1,5 @@
 import CustomHead from "@/components/CustomHead";
-import PhotoGallery from "@/components/Photo-gallery";
+import PhotoGallery from "@/components/gallery/Photo-gallery";
 
 function gallery() {
   return (

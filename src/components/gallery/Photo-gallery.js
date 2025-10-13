@@ -2,7 +2,7 @@ import { galleryPhotos } from "@/data/galleryPhotos";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import ImagePreview from "./ImagePreview";
+import ImagePreview from "../ImagePreview";
 
 function PhotoGallery() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import CustomHead from "@/components/CustomHead";
-import Courses from "@/components/Courses";
+import Courses from "@/components/courses/Courses";
 
 function courses() {
   return (
