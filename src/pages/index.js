@@ -1,8 +1,8 @@
 import CustomHead from "@/components/CustomHead";
-import HeroSection from "@/components/HeroSection";
-import EventHighlights from "@/components/EventHighlights";
-import ChairpersonsDesk from "@/components/ChairpersonsDesk";
-import VisionMission from "@/components/VisionMission";
+import HeroSection from "@/components/home/HeroSection";
+import ChairpersonsDesk from "@/components/home/ChairpersonsDesk";
+import EventHighlights from "@/components/home/EventHighlights";
+import VisionMission from "@/components/home/VisionMission";
 import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
@@ -29,11 +29,8 @@ export default function Home() {
       </div>
 
       {/* Chairperson's Desk */}
-      <div>
-        <ChairpersonsDesk />
-      </div>
 
-      {/* <div style={{ height: "100vh" }}></div> */}
+      <ChairpersonsDesk />
 
       {/* Event Highlights */}
       <EventHighlights />

@@ -82,6 +82,7 @@ function Courses() {
           color: #e74c3c;
           font-weight: 700;
           font-size: 1.2rem;
+          background: none;
         }
 
         .course-main-details {
@@ -149,7 +150,7 @@ function Courses() {
         </h2>
 
         {/* Application Form */}
-        <div className="text-center my-md-5 my-4 px-md-3">
+        <div className="text-center my-md-5 mt-4 px-md-3">
           <a
             href={`${basePath}/documents/admission-form.pdf`}
             className="application-form p-3 px-4 rounded-4 text-decoration-none"
@@ -166,7 +167,7 @@ function Courses() {
             return (
               <div
                 key={`course-${index}`}
-                className="my-5 rounded-4 shadow"
+                className="my-md-5 mt-4 mb-5 rounded-4 shadow"
                 style={{
                   overflow: "hidden",
                   border: "1px solid #e74d3c73",

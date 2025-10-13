@@ -1,34 +1,34 @@
-export const eventHightlightPhotos = (basePath) => [
+export const eventHightlightPhotos = [
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/1.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/1.jpeg`,
+    alt: "International Yoga Day - 2025",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/2.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/2.jpeg`,
+    alt: "2 Days Free Homeopathic Medical Camp in the Memory of Shri Guru Arjun Dev Ji - 26-05-2025 & 30-05-2025",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/3.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/3.jpg`,
+    alt: "Seminar on Pathology - Chronic Inflammation Materia - Chelidonium - 23-05-2025",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/4.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/4.jpg`,
+    alt: "सामाजिक अनुभूति बेहट होम्योपैथी शिविर 10 11 12 मई 2025",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/5.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/5.jpg`,
+    alt: "Blood Donation Camp organized By-S.H.M.C & RI",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/6.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/6.jpg`,
+    alt: "World Homeopathy Day 10 April 2025",
   },
   {
-    src: `${basePath}/event-images/international-yoga-day-2025/7.jpeg`,
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/7.jpg`,
+    alt: "Basant Panchmi 2025",
   },
   {
-    src: "",
-    alt: "Yoga Day Celebration 1",
+    src: `/images/event-highlights-photos/8.jpg`,
+    alt: "Seminar on World Cancer Day",
   },
 ];

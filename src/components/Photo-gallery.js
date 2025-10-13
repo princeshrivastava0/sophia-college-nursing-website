@@ -10,8 +10,6 @@ function PhotoGallery() {
   const [activePhoto, setActivePhoto] = useState(null);
   const [imgPreview, setImgPreview] = useState({
     currentIndex: null,
-    photoSrc: null,
-    photoAlt: null,
     isVisible: false,
   });
 
@@ -102,8 +100,7 @@ function PhotoGallery() {
                       src={`${basePath}${photo.src}`}
                       alt={photo.alt}
                       fill
-                      sizes="100vw"
-                      className="d-block w-100"
+                      sizes="(max-width: 767px) 95vw, (max-width: 1200px) 75vw, 75vw"
                       style={{ objectFit: "contain" }}
                     />
                     <div className="carousel-caption d-block">
@@ -212,7 +209,7 @@ function PhotoGallery() {
                             <Image
                               src={
                                 errorPhotos[photo.src]
-                                  ? `${basePath}/no-photo.jpg`
+                                  ? `${basePath}/images/no-photo.jpg`
                                   : `${basePath}${photo.src}`
                               }
                               alt={`${photo.alt}`}
@@ -223,6 +220,7 @@ function PhotoGallery() {
                                 borderRadius: "5px",
                               }}
                               onError={() => handleImageError(photo.src)}
+                              loading="lazy"
                             />
                           </span>
                         );

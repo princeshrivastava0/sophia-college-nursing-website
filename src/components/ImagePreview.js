@@ -18,11 +18,11 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
   const spinnerTimeoutRef = useRef(null);
 
   useEffect(() => {
-    if (!photos.length) return;
+    if (imgPreview.currentIndex == null || !photos.length) return;
 
     // If current photo is already known broken → auto-skip
     const currentPhoto = photos[imgPreview.currentIndex];
-    if (errorPhotos[currentPhoto.src]) {
+    if (errorPhotos[currentPhoto?.src]) {
       handleImgControl(skipBrokenImg);
       return;
     }
@@ -30,11 +30,19 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
     setIsLoading(true);
     setHasError(false); //reset error state
 
-    // 300ms timer to show spinner only if loading takes longer
-    spinnerTimeoutRef.current = setTimeout(() => setShowSpinner(true), 300);
-
     const imgEl = new window.Image();
-    imgEl.src = `${basePath}${photos[imgPreview.currentIndex].src}`;
+    imgEl.src = `${basePath}${photos[imgPreview.currentIndex]?.src}`;
+
+    if (!imgEl.complete) {
+      // 300ms timer to show spinner only if loading takes longer
+      spinnerTimeoutRef.current = setTimeout(() => setShowSpinner(true), 300);
+    }
+
+    // Cancel previous spinner timer (if any)
+    if (spinnerTimeoutRef.current) {
+      clearTimeout(spinnerTimeoutRef.current);
+    }
+
     imgEl.onload = () => {
       clearTimeout(spinnerTimeoutRef.current);
       setShowSpinner(false);
@@ -53,7 +61,7 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
 
       setErrorPhotos((prev) => ({
         ...prev,
-        [photos[imgPreview.currentIndex].src]: true,
+        [photos[imgPreview.currentIndex]?.src]: true,
       }));
       setIsLoading(false);
       handleImgControl(skipBrokenImg); // skip immediately if broken
@@ -98,7 +106,9 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
 
   const captionText = hasError
     ? "Failed to load image"
-    : photos[imgPreview.currentIndex].eventHeading;
+    : photos[imgPreview.currentIndex]?.eventHeading;
+
+  if (!imgPreview.isVisible || imgPreview.currentIndex == null) return null;
 
   return (
     <>
@@ -189,6 +199,7 @@ function ImagePreview({ photos, imgPreview, setImgPreview }) {
               </div>
             </div>
           )}
+
           <Image
             src={`${basePath}${photos[imgPreview.currentIndex].src}`}
             alt={`${photos[imgPreview.currentIndex].alt}`}
