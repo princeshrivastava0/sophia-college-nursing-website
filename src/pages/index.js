@@ -4,6 +4,7 @@ import ChairpersonsDesk from "@/components/home/ChairpersonsDesk";
 import EventHighlights from "@/components/home/EventHighlights";
 import VisionMission from "@/components/home/VisionMission";
 import CampusLife from "@/components/home/CampusLife";
+import DiscoverMore from "@/components/home/DiscoverMore";
 
 export default function Home() {
   return (
@@ -33,6 +34,9 @@ export default function Home() {
 
       {/* Campus-Life */}
       <CampusLife />
+
+      {/* DiscoverMore */}
+      <DiscoverMore />
 
       {/* Event Highlights */}
       <EventHighlights />

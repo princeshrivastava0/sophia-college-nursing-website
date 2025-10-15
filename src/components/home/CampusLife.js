@@ -74,15 +74,25 @@ function CampusLife() {
         }
       `}</style>
 
-      <section id="campus-life" className="pt-5">
+      <section
+        id="campus-life"
+        className="pt-5"
+        style={{ backgroundColor: "#2c3e50" }}
+      >
         <h2
-          className="text-center text-uppercase fw-bold"
-          style={{ color: "#e74c3c" }}
+          className="text-center text-uppercase fw-bold mx-auto pb-2"
+          style={{
+            color: "#fff",
+            filter: "drop-shadow(0 0 0.15rem #fff)",
+            letterSpacing: "5px",
+            borderBottom: "1px solid #fff",
+            width: "20%",
+          }}
         >
           Campus Life
         </h2>
 
-        <div className={`mx-auto p-5 rounded-3 shadow gridWrapper`}>
+        <div className={`mx-auto pt-4 pb-5 px-3 rounded-3 gridWrapper`}>
           <div className="grid">
             {campusLifePhotos.map((image, index) => (
               <div key={`campus-life-${index}`} className="grid-img">
