@@ -3,7 +3,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ChairpersonsDesk from "@/components/home/ChairpersonsDesk";
 import EventHighlights from "@/components/home/EventHighlights";
 import VisionMission from "@/components/home/VisionMission";
-import AboutUs from "@/components/AboutUs";
+import CampusLife from "@/components/home/CampusLife";
 
 export default function Home() {
   return (
@@ -30,6 +30,9 @@ export default function Home() {
 
       {/* Chairperson's Desk */}
       <ChairpersonsDesk />
+
+      {/* Campus-Life */}
+      <CampusLife />
 
       {/* Event Highlights */}
       <EventHighlights />

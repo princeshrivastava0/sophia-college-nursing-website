@@ -65,7 +65,7 @@ function HeroSection() {
         data-bs-pause="hover"
       >
         {/* Indicators */}
-        <div className="carousel-indicators">
+        <div className="carousel-indicators mb-5 pb-3">
           {validItems.map((_, index) => (
             <button
               key={`indicator-${index}`}
@@ -96,11 +96,20 @@ function HeroSection() {
                 sizes="100%"
                 style={{ objectFit: "cover" }}
                 priority={index === 0}
+                unoptimized
               />
-              <div className="carousel-caption d-none d-md-block">
+              <div
+                className="carousel-caption d-none d-md-block w-100 position-absolute p-0"
+                style={{
+                  bottom: "0",
+                  left: 0,
+                }}
+              >
                 <h5
-                  className="rounded p-3"
-                  style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+                  className="rounded p-3 m-0"
+                  style={{
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                  }}
                 >
                   {item.caption}
                 </h5>
