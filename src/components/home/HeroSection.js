@@ -99,7 +99,7 @@ function HeroSection() {
                 unoptimized
               />
               <div
-                className="carousel-caption d-none d-md-block w-100 position-absolute p-0"
+                className="carousel-caption d-none d-lg-block w-100 position-absolute p-0"
                 style={{
                   bottom: "0",
                   left: 0,

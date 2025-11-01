@@ -76,23 +76,21 @@ function CampusLife() {
 
       <section
         id="campus-life"
-        className="pt-5"
         style={{ backgroundColor: "#2c3e50" }}
+        className="p-5 px-2 px-md-5 text-center w-100"
       >
         <h2
-          className="text-center text-uppercase fw-bold mx-auto pb-2"
+          className="text-center text-uppercase fw-bold mb-3"
           style={{
             color: "#fff",
             filter: "drop-shadow(0 0 0.15rem #fff)",
-            letterSpacing: "5px",
-            borderBottom: "1px solid #fff",
-            width: "20%",
+            letterSpacing: "1px",
           }}
         >
           Campus Life
         </h2>
 
-        <div className={`mx-auto pt-4 pb-5 px-3 rounded-3 gridWrapper`}>
+        <div className={`mx-auto p-3 rounded-3 gridWrapper`}>
           <div className="grid">
             {campusLifePhotos.map((image, index) => (
               <div key={`campus-life-${index}`} className="grid-img">

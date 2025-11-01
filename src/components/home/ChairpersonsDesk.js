@@ -71,10 +71,14 @@ function ChairpersonsDesk() {
         className="p-5 px-2 px-md-5 text-center w-100"
       >
         {/* Container */}
-        <div className="container mx-auto" style={{ width: "80%" }}>
+        <div className="container mx-auto" style={{ maxWidth: "1200px" }}>
           <h2
             className="fw-bold mb-3"
-            style={{ textTransform: "uppercase", color: "#e74c3c" }}
+            style={{
+              textTransform: "uppercase",
+              color: "#e74c3c",
+              filter: "drop-shadow(0 0 0.10rem #e74c3c)",
+            }}
           >
             Chairperson's Message
           </h2>
