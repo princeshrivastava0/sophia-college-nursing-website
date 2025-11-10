@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Title from "../Title";
 
 function Courses() {
   const router = useRouter();
@@ -65,13 +66,6 @@ function Courses() {
   return (
     <>
       <style jsx>{`
-        .heading {
-          text-align: left;
-          font-size: 2.5rem;
-          width: 80%;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-        }
-
         .details-container {
           width: 90%;
         }
@@ -114,23 +108,10 @@ function Courses() {
           transform: scale(1.1);
         }
 
-        // for small mobile screens - reduced text size
-        @media screen and (max-width: 350px) {
-          .heading {
-            font-size: 1.5rem !important;
-            width: 90% !important;
-          }
-        }
-
         @media screen and (max-width: 991.98px) {
           .course-table > * {
             width: 100% !important;
             text-align: center !important;
-          }
-
-          .heading {
-            text-align: center;
-            font-size: 2rem;
           }
 
           .mobile-heading {
@@ -145,9 +126,7 @@ function Courses() {
         }}
       >
         {/* Heading */}
-        <h2 className="fw-bold m-0 pt-lg-5 pt-4 pb-3 ps-lg-3 mx-auto heading">
-          Courses Offered
-        </h2>
+        <Title title="Courses Offered" />
 
         {/* Application Form */}
         <div className="text-center my-md-5 mt-4 px-md-3">

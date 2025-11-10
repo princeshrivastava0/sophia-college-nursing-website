@@ -9,9 +9,7 @@ function gallery() {
         description="Explore our vibrant campus life and academic events through our photo gallery."
       />
 
-      <section id="gallery">
-        <PhotoGallery />
-      </section>
+      <PhotoGallery />
     </>
   );
 }

@@ -16,10 +16,7 @@ function Footer() {
       title: "Gallery",
       path: "/gallery",
     },
-    {
-      title: "Staff",
-      path: "/staff",
-    },
+
     {
       title: "Get in touch",
       path: "/contact",

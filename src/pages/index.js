@@ -42,9 +42,7 @@ export default function Home() {
       <EventHighlights />
 
       {/* Vision-Mission */}
-      <div>
-        <VisionMission />
-      </div>
+      <VisionMission />
     </>
   );
 }

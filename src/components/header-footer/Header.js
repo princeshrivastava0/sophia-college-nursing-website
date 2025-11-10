@@ -55,11 +55,6 @@ function Header() {
       icon: "image",
     },
     {
-      title: "Staff",
-      path: "/staff",
-      icon: "people",
-    },
-    {
       title: "Contact Us",
       path: "/contact",
       icon: "telephone",
@@ -197,7 +192,9 @@ function Header() {
               {navItems.map((item, index) => {
                 return (
                   <Link
-                    className={`text-decoration-none mx-4`}
+                    className={`text-decoration-none ${
+                      navItems.length - 1 === index ? "ms-3 me-4" : "mx-3"
+                    }`}
                     key={`nav-item-${index}`}
                     href={`${item.path}`}
                   >

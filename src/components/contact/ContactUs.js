@@ -1,3 +1,5 @@
+import Title from "../Title";
+
 function ContactUs() {
   const ContactDetails = [
     {
@@ -25,18 +27,6 @@ function ContactUs() {
   return (
     <>
       <style jsx>{`
-        @media screen and (max-width: 350px) {
-          .heading {
-            font-size: 2rem !important;
-            width: 90% !important;
-          }
-        }
-        .heading {
-          text-align: left;
-          font-size: 2.5rem;
-          width: 75%;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-        }
         .details-container {
           width: 75%;
         }
@@ -67,9 +57,6 @@ function ContactUs() {
         }
 
         @media screen and (max-width: 767px) {
-          .heading {
-            text-align: center;
-          }
           .details-container {
             width: 95vw;
           }
@@ -126,9 +113,7 @@ function ContactUs() {
         }}
       >
         {/* Heading */}
-        <h2 className="fw-bold m-0 pt-lg-5 pt-4 pb-3 ps-lg-3 mx-auto heading">
-          Get In Touch
-        </h2>
+        <Title title="Get In Touch" />
 
         {/* Quick Contacts */}
         <div

@@ -128,7 +128,7 @@ function EventHighlights() {
           }
         }
 
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 767.98px) {
           .photo-grid {
             max-width: 400px !important;
           }
