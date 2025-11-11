@@ -73,6 +73,11 @@ function DiscoverMore() {
           max-width: 1200px;
         }
 
+        .card-img {
+          height: 100%;
+          width: 100%;
+        }
+
         @media screen and (max-width: 767.98px) {
           .card-container {
             grid-template-columns: repeat(1, 1fr);
@@ -127,19 +132,14 @@ function DiscoverMore() {
                 onClick={() => discoverDetails(card.param)}
               >
                 {/* Image */}
-                <div
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  className="position-relative"
-                >
+                <div className="position-relative card-img">
                   <Image
                     src={card.logo}
                     alt={card.alt}
                     fill
                     sizes="100%"
                     style={{ objectFit: "contain" }}
+                    className="pb-5 pb-md-0"
                   />
                 </div>
 

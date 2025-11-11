@@ -1,4 +1,9 @@
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 function AboutUs() {
+  const router = useRouter();
+  const { basePath } = router;
   const collegeInfoTable = [
     {
       title: "Institution",
@@ -10,9 +15,11 @@ function AboutUs() {
     },
     {
       title: "Recognition",
-      info: `1) Central Council of Homoeopathy (New Delhi)
-2) Higher Education, Government of Madhya Pradesh
-3) Department of AYUSH – Government of India`,
+      info: [
+        "Central Council of Homoeopathy (CCH), New Delhi",
+        "Higher Education, Govt. of Madhya Pradesh",
+        "Dept. of AYUSH – Govt. of India",
+      ],
     },
     {
       title: "Affiliation",
@@ -24,7 +31,7 @@ function AboutUs() {
     },
     {
       title: "Course Duration",
-      info: "5 ½ years including 1 year compulsory internship",
+      info: "5½ years, including 1 year compulsory internship",
     },
     {
       title: "No. of Seats",
@@ -52,18 +59,20 @@ function AboutUs() {
     },
     {
       title: "Infrastructure",
-      info: `Well-equipped laboratories and departments, Well-furnished classrooms & seminar hall`,
+      info: `Well-equipped laboratories and departments, Well-furnished classrooms and seminar hall`,
     },
     {
       title: "Facilities",
-      info: `• Audio Visual Aid for Teaching
-             • Distinguished and Experienced Faculty
-             • Training Hospital and Peripheral O.P.D
-             • Well-stocked and Spacious Library
-             • Girls Hostel – 100 Seats
-             • Transport Facilities – By College Bus
-             • Scholarship
-             • Railway and Other Concession Facilities`,
+      info: [
+        "Audio-Visual Aids for Teaching",
+        "Distinguished and Experienced Faculty",
+        "Training Hospital and Peripheral O.P.D",
+        "Well-stocked and Spacious Library",
+        "Girls Hostel – 100 Seats",
+        "Transport Facilities – College Bus",
+        "Scholarship",
+        "Railway and Other Concession Facilities",
+      ],
     },
     {
       title: "Personality Development Programme",
@@ -81,6 +90,18 @@ function AboutUs() {
   return (
     <>
       <style jsx>{`
+        .logo {
+          height: 250px;
+          width: 250px;
+          float: left;
+          border-radius: 50%;
+          overflow: hidden;
+          shape-outside: circle();
+          webkit-shape-utside: circle();
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+          border: 2px solid rgba(0, 0, 0, 0.3);
+        }
+
         .about-article {
           font-weight: 500;
           font-size: 1.15rem;
@@ -88,8 +109,7 @@ function AboutUs() {
 
         .info-table {
           width: 90%;
-          max-width: 900px;
-          margin: 0 auto;
+          max-width: 1000px;
           border-collapse: collapse;
           border-radius: 8px;
           overflow: hidden;
@@ -102,6 +122,7 @@ function AboutUs() {
           padding: 1rem;
           border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           background: #fff;
+          align-items: center;
         }
 
         .info-row:nth-child(even) {
@@ -109,19 +130,50 @@ function AboutUs() {
         }
 
         .info-title {
-          font-weight: 600;
+          font-weight: 700;
           color: #e74c3c;
           text-transform: uppercase;
-          font-size: 1rem;
+          font-size: 1.05rem;
+          word-wrap: break-word;
         }
 
         .info-text {
           white-space: pre-line;
           color: #222;
           font-size: 1rem;
+          word-wrap: break-word;
+          font-weight: 600;
+          text-transform: uppercase;
         }
 
-        @media screen and (max-width: 768px) {
+        .info-text ul {
+          padding-left: 0rem;
+          text-align: left;
+          margin-bottom: 0;
+          margin-left: 1rem;
+        }
+
+        .info-text li {
+          list-style-type: disc;
+          margin-bottom: 0.35rem;
+          font-weight: 600;
+        }
+
+        @media screen and (max-width: 767.98px) {
+          .logo {
+            float: none;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .table-heading {
+            font-size: 1.15rem;
+          }
+
+          .info-table {
+            width: 100%;
+          }
+
           .info-row {
             grid-template-columns: 1fr;
             text-align: center;
@@ -129,11 +181,17 @@ function AboutUs() {
 
           .info-title {
             font-size: 1rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
           }
 
           .info-text {
             font-size: 0.95rem;
+            text-indent: 0px;
+            padding: 0 0.5rem;
+          }
+
+          .info-text li {
+            padding-left: 8px;
           }
         }
 
@@ -146,7 +204,17 @@ function AboutUs() {
           }
         }
       `}</style>
-      <section id="about-us" style={{}}>
+      <section id="about-us">
+        {/* Logo */}
+        <div className="position-relative mb-4 mb-md-0 me-5 logo">
+          <Image
+            src={`${basePath}/favicon.png`}
+            alt="Sophia-Nursing-College-Logo"
+            style={{ objectFit: "contain" }}
+            fill
+          />
+        </div>
+
         {/* About Article */}
         <div style={{ textAlign: "justify" }}>
           <p className="about-article">
@@ -162,17 +230,17 @@ function AboutUs() {
             Pride for the "SOPHIANS".
           </p>
           <p className="about-article">
-            The college are Affiliated to Jiwaji University and Recognised by
-            Central Council of Homoeopathy New Delhi, Indian Nursing Council,
+            The college is Affiliated to Jiwaji University and Recognised by
+            Central Council of Homoeopathy - New Delhi, Indian Nursing Council,
             Mahakushal Nursing Council Bhopal, Higher Education and Medical
-            Education Govt. of M.P. and other statutory bodies.The College is
+            Education Govt. of M.P. and other statutory bodies. The College is
             managed by a committee of highly professional Educationists and
             outstanding social activists and is promoted by Swastik Educational
             and Social Welfare Society, a registered body under M.P. Society Act
             1973. It has been working in the field of education for last ten
             years . The Institute has a successful background of running
             Diploma, Bachelor Degree and Master Degree Courses in Nursing
-            Education The institute has been Forutnate enough to launch, The
+            Education. The institute has been Forutnate enough to launch, The
             Sophia Homoepathic Medical College that impart the BHMS Course.
           </p>
 
@@ -197,7 +265,7 @@ function AboutUs() {
             students and toppers. The institute has been in the forefront of
             extracurricular activities, competing against the oldest
             institutions of the city, Recognizing the aspirations of the
-            students the institute has managed to ensure placements Further
+            students, the institute has managed to ensure placements and further
             expansion of the college building, hostel for boys and girls, indoor
             hospital, herbal garden is under development.
             <span
@@ -213,11 +281,28 @@ function AboutUs() {
         </div>
 
         {/* Information About College*/}
-        <div className="info-table">
+        <h3
+          className="text-center mt-5 mb-4 fw-bold table-heading"
+          style={{ color: "#e74c3c", textTransform: "uppercase" }}
+        >
+          Key Highlights of the College
+        </h3>
+        <div className="info-table mx-auto">
           {collegeInfoTable.map((item, index) => (
             <div key={`info-table-${index}`} className="info-row">
-              <div className="info-title">{item.title}</div>
-              <div className="info-text">{item.info}</div>
+              <div className="info-title ms-md-3">{item.title}</div>
+
+              <div className="info-text ps-md-5 me-md-3">
+                {Array.isArray(item.info) ? (
+                  <ul>
+                    {item.info.map((list, index) => (
+                      <li key={index}>{list}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  item.info
+                )}
+              </div>
             </div>
           ))}
         </div>
