@@ -212,6 +212,7 @@ function AboutUs() {
             alt="Sophia-Nursing-College-Logo"
             style={{ objectFit: "contain" }}
             fill
+            sizes="100%"
           />
         </div>
 

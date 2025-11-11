@@ -22,19 +22,11 @@ export default function App({ Component, pageProps }) {
 
   // Disable scroll when loader is active
   useEffect(() => {
-    const style = isLoading
-      ? { overflow: "hidden", height: "100vh" }
-      : { overflow: "auto", height: "auto" };
-
-    Object.assign(document.documentElement.style, style);
-    Object.assign(document.body.style, style);
-  }, [isLoading]);
-
-  useEffect(() => {
     const handleStart = () => {
       setIsLoading(true);
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
     };
 
     const handleComplete = () => {
@@ -42,6 +34,7 @@ export default function App({ Component, pageProps }) {
         setIsLoading(false);
         document.documentElement.style.overflow = "auto";
         document.body.style.overflow = "auto";
+        document.body.style.height = "auto";
       }, 1000); // smooth fade-out
     };
 

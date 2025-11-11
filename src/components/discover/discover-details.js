@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Title from "../Title";
 import AboutUs from "./about";
+import Staff from "./staff";
 
 function DiscoverDetails({ query }) {
   const headingMap = {
@@ -8,12 +9,26 @@ function DiscoverDetails({ query }) {
     staff: "Our Staff",
   };
 
+  let discoverCard = <AboutUs />;
+
+  switch (query) {
+    case "about":
+      discoverCard = <AboutUs />;
+      break;
+    case "staff":
+      discoverCard = <Staff />;
+      break;
+    default:
+      discoverCard = <AboutUs />;
+  }
+
   const heading = headingMap[query] || "About Us";
 
   return (
     <>
       <style jsx>{`
         .details-container {
+          min-height: 100vh;
           width: 75%;
         }
 
@@ -38,7 +53,7 @@ function DiscoverDetails({ query }) {
         {/* Heading */}
         <Title title={`${heading}`} />
         <div className="details-container mx-auto my-5 px-3">
-          <AboutUs />
+          {discoverCard}
         </div>
       </section>
     </>
