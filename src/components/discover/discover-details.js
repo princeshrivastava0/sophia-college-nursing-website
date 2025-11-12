@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Title from "../Title";
 import AboutUs from "./about";
 import Staff from "./staff";
