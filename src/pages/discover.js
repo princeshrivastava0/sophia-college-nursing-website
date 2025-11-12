@@ -1,11 +1,34 @@
 import CustomHead from "@/components/CustomHead";
 import DiscoverDetails from "@/components/discover/discover-details";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function Discover() {
   const router = useRouter();
   const { type } = router.query;
-  const tabTitle = type === "about" ? "About Us" : "Staff";
+  const [tabTitle, setTabTitle] = useState("Discover More");
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    if (!type) {
+      router.replace("/#discover-more");
+      return;
+    }
+
+    const titles = {
+      about: "About Us",
+      staff: "Staff",
+      archives: "Archives",
+    };
+
+    if (titles[type]) {
+      setTabTitle(titles[type]);
+    } else {
+      router.replace("/#discover-more");
+    }
+  }, [router.isReady, type]);
+
   return (
     <>
       <CustomHead

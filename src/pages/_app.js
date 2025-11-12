@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import Header from "@/components/header-footer/Header";
 import Footer from "@/components/header-footer/Footer";
 import { useRouter } from "next/router";
-import NextTopLoader from "nextjs-toploader";
 import { PagesTopLoader } from "nextjs-toploader/pages";
 
 export default function App({ Component, pageProps }) {

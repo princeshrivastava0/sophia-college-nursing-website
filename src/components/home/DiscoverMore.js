@@ -11,7 +11,6 @@ function DiscoverMore() {
       param: "about",
       logo: `${basePath}/about-us-logo.jpg`,
       alt: "about-us-logo",
-      info: "this is card info",
     },
     {
       title: "Staff",
@@ -19,23 +18,20 @@ function DiscoverMore() {
       param: "staff",
       logo: `${basePath}/staff-logo.jpg`,
       alt: "staff-logo",
-      info: "this is card info",
     },
     {
       title: "Card 3",
       nav: "/discover",
-      param: "about",
+      param: "",
       logo: `${basePath}/staff-logo.jpg`,
       alt: "card-3",
-      info: "this is card info",
     },
     {
-      title: "Card 4",
+      title: "Archives",
       nav: "/discover",
-      param: "about",
-      logo: `${basePath}/staff-logo.jpg`,
-      alt: "card-4",
-      info: "this is card info",
+      param: "archives",
+      logo: `${basePath}/archives-logo.jpg`,
+      alt: "archives-logo",
     },
   ];
 

@@ -100,7 +100,7 @@ function ChairpersonsDesk() {
               }}
             >
               <Image
-                src={`${basePath}/chairperson-img.jpeg`}
+                src={`${basePath}/chairperson-img.png`}
                 alt="chairperson"
                 fill
                 sizes="100%"
