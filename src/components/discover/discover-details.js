@@ -3,6 +3,7 @@ import Title from "../Title";
 import AboutUs from "./about";
 import Staff from "./staff";
 import Archives from "./archives";
+import Notice from "./notice";
 import { useRouter } from "next/router";
 
 function DiscoverDetails({ query }) {
@@ -44,6 +45,12 @@ function DiscoverDetails({ query }) {
         setDiscoverCard({
           heading: "Our Staff",
           card: <Staff />,
+        });
+        break;
+      case "notice":
+        setDiscoverCard({
+          heading: "Notice / Circulars",
+          card: <Notice />,
         });
         break;
       case "archives":

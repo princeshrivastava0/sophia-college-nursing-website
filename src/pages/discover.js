@@ -19,6 +19,7 @@ function Discover() {
     const titles = {
       about: "About Us",
       staff: "Staff",
+      notice: "Notice  Circulars",
       archives: "Archives",
     };
 

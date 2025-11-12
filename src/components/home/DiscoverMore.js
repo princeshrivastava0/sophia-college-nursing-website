@@ -20,11 +20,11 @@ function DiscoverMore() {
       alt: "staff-logo",
     },
     {
-      title: "Card 3",
+      title: `Notice / Circulars`,
       nav: "/discover",
-      param: "",
-      logo: `${basePath}/staff-logo.jpg`,
-      alt: "card-3",
+      param: "notice",
+      logo: `${basePath}/notice-logo.jpg`,
+      alt: "notice-logo",
     },
     {
       title: "Archives",
