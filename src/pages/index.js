@@ -35,11 +35,11 @@ export default function Home() {
       {/* Campus-Life */}
       <CampusLife />
 
-      {/* DiscoverMore */}
-      <DiscoverMore />
-
       {/* Event Highlights */}
       <EventHighlights />
+
+      {/* DiscoverMore */}
+      <DiscoverMore />
 
       {/* Vision-Mission */}
       <VisionMission />

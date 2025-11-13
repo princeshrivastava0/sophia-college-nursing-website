@@ -14,7 +14,7 @@ function VisionMission() {
       `}</style>
       <section
         id="vision-mission"
-        className="p-5 pt-0 px-2 px-md-5 text-center w-100"
+        className="p-5 px-2 px-md-5 text-center w-100"
       >
         {/* Container */}
         <div className="container mx-auto" style={{ width: "80%" }}>

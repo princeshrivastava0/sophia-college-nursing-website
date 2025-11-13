@@ -55,6 +55,11 @@ function Header() {
       icon: "image",
     },
     {
+      title: "Discover",
+      path: "/#discover-more",
+      icon: "compass",
+    },
+    {
       title: "Contact Us",
       path: "/contact",
       icon: "telephone",
@@ -200,7 +205,9 @@ function Header() {
                   >
                     <span
                       className={`fw-bold ${
-                        router.pathname === item.path
+                        router.pathname === item.path ||
+                        (router.pathname === "/discover" &&
+                          item.path === "/#discover-more")
                           ? "active-tab"
                           : "tab-hover"
                       }`}
@@ -274,7 +281,9 @@ function Header() {
                 <span
                   style={{ fontSize: "1.25rem" }}
                   className={`fw-bold ${
-                    router.pathname === item.path
+                    router.pathname === item.path ||
+                    (router.pathname === "/discover" &&
+                      item.path === "/#discover-more")
                       ? "active-tab"
                       : "text-light tab-hover"
                   } drawer-tab`}
