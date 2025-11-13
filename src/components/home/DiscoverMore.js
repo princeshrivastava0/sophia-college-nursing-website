@@ -102,6 +102,7 @@ function DiscoverMore() {
         className="p-5 px-2 px-md-5 text-center w-100"
         style={{ backgroundColor: "#d6d6d654" }}
       >
+        {/* heading */}
         <h2
           className="fw-bold mb-3 text-center"
           style={{
@@ -139,7 +140,7 @@ function DiscoverMore() {
                   />
                 </div>
 
-                {/* Explore */}
+                {/* Card Title */}
                 <div
                   className="w-100 fw-bold d-flex justify-content-center align-items-center position-absolute"
                   style={{

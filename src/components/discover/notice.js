@@ -60,7 +60,7 @@ function Notice() {
           {noticeData.map((item, index) => (
             <div key={`info-table-${index}`} className="info-row">
               <a
-                href={`${basePath}/documents/archives/${item.pdfDownloadURL}`}
+                href={`${basePath}/documents/notice-circulars/${item.pdfDownloadURL}`}
                 className="text-decoration-none info-text d-flex align-items-center w-100"
                 title={`Download ${item.title}`}
                 rel="noopener noreferrer"

@@ -4,6 +4,12 @@ import { useRouter } from "next/router";
 function Archives() {
   const router = useRouter();
   const { basePath } = router;
+
+  const sortedArchiveData = [...archiveData].sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return b.month - a.month; // latest month first
+  });
+
   return (
     <>
       <style jsx>{`
@@ -57,7 +63,7 @@ function Archives() {
       `}</style>
       <section id="archives">
         <div className="info-table mx-auto mb-5">
-          {archiveData.map((item, index) => (
+          {sortedArchiveData.map((item, index) => (
             <div key={`info-table-${index}`} className="info-row">
               <a
                 href={`${basePath}/documents/archives/${item.pdfDownloadURL}`}
