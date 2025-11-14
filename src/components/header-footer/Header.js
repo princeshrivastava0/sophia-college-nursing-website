@@ -109,10 +109,19 @@ function Header() {
           right: 49%;
         }
 
-        .tab-hover:hover:before,
-        .tab-hover:hover:after {
-          width: 50%;
-          border-bottom: 2px solid #444444;
+        // .tab-hover:hover:before,
+        // .tab-hover:hover:after {
+        //   width: 50%;
+        //   border-bottom: 2px solid #444444;
+        // }
+
+        // disable hover underline on mobile-touch devices
+        @media (hover: hover) and (pointer: fine) {
+          .tab-hover:hover:before,
+          .tab-hover:hover:after {
+            width: 50%;
+            border-bottom: 2px solid #444444;
+          }
         }
 
         .drawer-overlay {
