@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 function Footer() {
+  const router = useRouter();
+  const { basePath } = router;
   const [hoverLink, setHoverLink] = useState(null);
   const quickLinks = [
     {
@@ -55,6 +59,10 @@ function Footer() {
           .contact-text-align {
             text-align: left !important;
           }
+
+          .main-logo-footer {
+            height: 100px !important;
+          }
         }
 
         @media screen and (min-width: 767px) and (max-width: 1280px) {
@@ -87,6 +95,22 @@ function Footer() {
         className="footer-wrapper d-flex flex-column justify-content-center align-items-center"
         style={{ backgroundColor: "#000000" }}
       >
+        {/* Main-Logo */}
+        <div
+          className="position-relative bg-white main-logo-footer"
+          style={{
+            width: "100%",
+            height: "200px",
+          }}
+        >
+          <Image
+            className="pb-3"
+            src={`${basePath}/main_logo.png`}
+            fill
+            style={{ objectFit: "contain" }}
+            alt="main-logo"
+          />
+        </div>
         <div
           className="d-flex  flex-row flex-wrap justify-content-evenly align-items-center align-items-md-start py-4 mt-1 py-md-5"
           style={{

@@ -16,9 +16,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <PagesTopLoader
-        color="#2c3e50"
+        color="#060771"
         showSpinner={false}
-        height={5}
         speed={500}
         easing="ease-in-out"
       />

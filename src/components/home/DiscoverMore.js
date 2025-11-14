@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function DiscoverMore() {
   const router = useRouter();
@@ -35,15 +36,6 @@ function DiscoverMore() {
     },
   ];
 
-  const discoverDetails = (param) => {
-    router.push({
-      pathname: "/discover",
-      query: {
-        type: param,
-      },
-    });
-  };
-
   return (
     <>
       <style jsx>{`
@@ -58,7 +50,6 @@ function DiscoverMore() {
         /* Hover effect */
         .card-custom:hover {
           transform: translateY(-8px) scale(1.03);
-
           box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
         }
 
@@ -80,8 +71,8 @@ function DiscoverMore() {
           }
 
           .card-custom {
-            width: 90%;
             max-width: 400px;
+            width: 80vw;
           }
         }
 
@@ -118,43 +109,50 @@ function DiscoverMore() {
           {/* Card */}
           {card_data.map((card, index) => {
             return (
-              <div
+              <Link
                 key={`card-${index}`}
-                className={`card-custom card-${index} position-relative `}
-                style={{
-                  overflow: "hidden",
-                  cursor: "pointer",
-                  backgroundColor: "#fff",
+                href={{
+                  pathname: "/discover",
+                  query: { type: card.param },
                 }}
-                onClick={() => discoverDetails(card.param)}
+                className="text-decoration-none"
               >
-                {/* Image */}
-                <div className="position-relative card-img">
-                  <Image
-                    src={card.logo}
-                    alt={card.alt}
-                    fill
-                    sizes="100%"
-                    style={{ objectFit: "contain" }}
-                    className="pb-5 pb-md-0"
-                  />
-                </div>
-
-                {/* Card Title */}
                 <div
-                  className="w-100 fw-bold d-flex justify-content-center align-items-center position-absolute"
+                  className={`card-custom card-${index} position-relative `}
                   style={{
-                    height: "55px",
-                    backgroundColor: "#e74c3c",
-                    color: "#fff",
-                    fontSize: "1.25rem",
-                    bottom: 0,
-                    left: 0,
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    backgroundColor: "#fff",
                   }}
                 >
-                  {card.title}
+                  {/* Image */}
+                  <div className="position-relative card-img">
+                    <Image
+                      src={card.logo}
+                      alt={card.alt}
+                      fill
+                      sizes="100%"
+                      style={{ objectFit: "contain" }}
+                      className="pb-5 pb-md-0"
+                    />
+                  </div>
+
+                  {/* Card Title */}
+                  <div
+                    className="w-100 fw-bold d-flex justify-content-center align-items-center position-absolute"
+                    style={{
+                      height: "55px",
+                      backgroundColor: "#e74c3c",
+                      color: "#fff",
+                      fontSize: "1.25rem",
+                      bottom: 0,
+                      left: 0,
+                    }}
+                  >
+                    {card.title}
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import ScrollIndicator from "./ScrollIndicator";
 import ContactBanner from "./ContactBanner";
+import MainLogo from "./MainLogo";
+import { Main } from "next/document";
 
 function Header() {
   const router = useRouter();
@@ -150,7 +152,7 @@ function Header() {
         }}
       >
         <div
-          className="d-flex justify-content-between align-items-center w-100 px-4 me-1"
+          className="d-flex justify-content-between align-items-center w-100 px-4 mx-auto position-relative"
           style={{
             height: "100%",
             maxWidth: "2000px",
@@ -166,6 +168,9 @@ function Header() {
               priority
             />
           </Link>
+
+          {/* Main Logo */}
+          <MainLogo />
 
           {/* Right Container */}
           <div className="d-flex">
