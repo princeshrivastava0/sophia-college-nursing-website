@@ -56,12 +56,6 @@ function Staff() {
         }
       `}</style>
       <section id="staff">
-        <h3
-          className="text-center mt-5 mb-4 fw-bold table-heading"
-          style={{ color: "#e74c3c", textTransform: "uppercase" }}
-        >
-          Download our staff list
-        </h3>
         <div className="info-table mx-auto mb-5">
           {staffData.map((item, index) => (
             <div key={`info-table-${index}`} className="info-row">

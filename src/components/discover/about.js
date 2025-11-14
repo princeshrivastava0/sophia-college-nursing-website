@@ -286,7 +286,7 @@ function AboutUs() {
           className="text-center mt-5 mb-4 fw-bold table-heading"
           style={{ color: "#e74c3c", textTransform: "uppercase" }}
         >
-          Key Highlights of the College
+          Key Highlights
         </h3>
         <div className="info-table mx-auto">
           {collegeInfoTable.map((item, index) => (

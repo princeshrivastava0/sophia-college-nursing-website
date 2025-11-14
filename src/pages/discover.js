@@ -37,7 +37,7 @@ function Discover() {
         description="Discover more about our institution — learn about our history, dedicated staff, and the enriching campus experiences that make our community unique."
       />
 
-      <DiscoverDetails query={type} />
+      <DiscoverDetails />
     </>
   );
 }

@@ -94,27 +94,4 @@ section {
   border-bottom: 3px solid #e74c3c;
 }
 
-/* Hiding Spinner from Input:Number */
-/* Chrome, Safari, Edge, Opera */
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
 
-/* Firefox */
-/* input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.recaptcha-container {
-  transform: scale(0.8);
-  transform-origin: center;
-  width: 100%;
-}
-
-.recaptcha-container > div {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-} */
