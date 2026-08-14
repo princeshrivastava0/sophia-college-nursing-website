@@ -1,4 +1,4 @@
-# Sophia Nursing College Website (Sophia Institute of Medical Sciences - Gwalior, M.P.)
+# Sophia Nursing College Website (Sophia Institute of Medical Science - Gwalior, M.P.)
 
 A responsive institutional website built from scratch for Sophia Institute of Medical Science / Sophia Nursing College, Gwalior.
 
