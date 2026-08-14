@@ -87,19 +87,27 @@ Make sure you have Node.js and npm installed on your system.
 
 ### Clone the repository:
 
+```bash
 git clone https://github.com/princeshrivastava0/sophia-college-nursing-website.git
+```
 
 ### Navigate to the project directory:
 
+```bash
 cd sophia-college-nursing-website
+```
 
 ### Install dependencies:
 
+```bash
 npm install
+```
 
 ### Run the development server:
 
+```bash
 npm run dev
+```
 
 ### Open http://localhost:3000 in your browser.
 
@@ -107,21 +115,25 @@ npm run dev
 
 ### Create a production build: 
 
+```bash
 npm run build
+```
 
 ### Start the production server:
 
+```bash
 npm start
+```
 
 ## ☁️ Deployment
 The website is deployed on Vercel.
 
 ## 👨‍💻 Developer
-## Prince Shrivastava
+**Prince Shrivastava**
 
-#### GitHub: [@princeshrivastava0](https://github.com/princeshrivastava0)
-#### Instagram: [@princeshrivastava.dev](https://www.instagram.com/princeshrivastava.dev)
-#### YouTube: [@princeshrivastava](https://www.youtube.com/@princeshrivastava)
-#### LinkedIn: [Prince Shrivastava](https://www.linkedin.com/in/prince-shrivastava/)
+- **GitHub:** [@princeshrivastava0](https://github.com/princeshrivastava0)
+- **Instagram:** [@princeshrivastava.dev](https://www.instagram.com/princeshrivastava.dev)
+- **YouTube:** [@princeshrivastava](https://www.youtube.com/@princeshrivastava)
+- **LinkedIn:** [Prince Shrivastava](https://www.linkedin.com/in/prince-shrivastava/)
 
 # Built with ❤️ by Prince Shrivastava
