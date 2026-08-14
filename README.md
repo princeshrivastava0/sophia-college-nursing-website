@@ -1,8 +1,8 @@
-# Sophia Nursing College - Gwalior(M.P.) / Institute Website
+# Sophia Nursing College Website (Sophia Institute of Medical Sciences - Gwalior, M.P.)
 
 A responsive institutional website built from scratch for Sophia Institute of Medical Science / Sophia Nursing College, Gwalior.
 
-The website provides students, faculty, and visitors with information about the institution, courses, campus activities, staff, notices, archives, and contact details.
+The website provides information about the institution, courses, campus activities, faculty and staff, notices, archives, and contact details.
 
 ## 🌐 Live Website
 
@@ -17,21 +17,24 @@ The website provides students, faculty, and visitors with information about the 
 - 📢 Notices and circulars
 - 🗂️ Archived institutional documents
 - 📍 Contact information and location map
-- 📱 Responsive design for different screen sizes
+- 📱 Responsive user interface
 - 🚀 Production deployment with Vercel
 
 ## 🛠️ Tech Stack
 
-- Next.js
-- React
-- JavaScript
-- Bootstrap
-- CSS
-- Vercel
+- **Next.js** 15.4.1
+- **React** 19.1.0
+- **JavaScript**
+- **Bootstrap** 5.3.7
+- **React Bootstrap** 2.10.10
+- **Bootstrap Icons** 1.13.1
+- **Next.js TopLoader** 3.9.17
+- **Vercel**
 
-## 📄 Main Sections
+## 📄 Website Sections
 
 ### Home
+
 The homepage provides an overview of the institution, including:
 
 - Chairperson's message
@@ -51,7 +54,7 @@ Displays information about available programmes, including:
 
 ### Gallery
 
-A categorized gallery showcasing institutional events, activities, celebrations, camps, seminars, and campus life.
+A categorized gallery showcasing institutional events, activities, celebrations, medical camps, seminars, and campus life.
 
 ### Discover
 
@@ -64,7 +67,14 @@ Provides access to:
 
 ### Contact
 
-Provides institutional contact information, admission and account cell details, address, phone numbers, email addresses, and an embedded map for locating the institution.
+Provides institutional contact information, including:
+
+- Principal and admission cell details
+- Account cell details
+- Phone numbers
+- Email addresses
+- Institutional address
+- Location map
 
 ## 🚀 Getting Started
 
