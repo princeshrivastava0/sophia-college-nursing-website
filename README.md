@@ -1,40 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Sophia Nursing College - Gwalior(M.P.) / Institute Website
 
-## Getting Started
+A responsive institutional website built from scratch for Sophia Institute of Medical Science / Sophia Nursing College, Gwalior.
 
-First, run the development server:
+The website provides students, faculty, and visitors with information about the institution, courses, campus activities, staff, notices, archives, and contact details.
+
+## 🌐 Live Website
+
+[Visit the Website](https://sophiainstitutes.vercel.app/nursing)
+
+## ✨ Features
+
+- 🏫 Institutional information and About section
+- 🎓 Courses and programme information
+- 🖼️ Gallery with categorized events and campus photographs
+- 👥 Faculty and staff information
+- 📢 Notices and circulars
+- 🗂️ Archived institutional documents
+- 📍 Contact information and location map
+- 📱 Responsive design for different screen sizes
+- 🚀 Production deployment with Vercel
+
+## 🛠️ Tech Stack
+
+- Next.js
+- React
+- JavaScript
+- Bootstrap
+- CSS
+- Vercel
+
+## 📄 Main Sections
+
+### Home
+The homepage provides an overview of the institution, including:
+
+- Chairperson's message
+- Campus life
+- Event highlights
+- Discover section
+- Vision and mission
+
+### Courses
+
+Displays information about available programmes, including:
+
+- GNM – General Nursing and Midwifery
+- B.Sc. Nursing
+- M.Sc. Nursing
+- P.B.B.Sc. – Post Basic Nursing
+
+### Gallery
+
+A categorized gallery showcasing institutional events, activities, celebrations, camps, seminars, and campus life.
+
+### Discover
+
+Provides access to:
+
+- About Us
+- Staff
+- Notices / Circulars
+- Archives
+
+### Contact
+
+Provides institutional contact information, admission and account cell details, address, phone numbers, email addresses, and an embedded map for locating the institution.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js and npm installed on your system.
+
+### Installation
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+git clone https://github.com/princeshrivastava0/sophia-college-nursing-website.git
